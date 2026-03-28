@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Cookie consent RGPD + GA — partagé avec index.html via cookie-banner.js -->
+  <!-- La page 404 est en français fixe (page d'erreur simple, pas de i18n chargé) -->
+  <script src="/cookie-banner.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Alexis Colin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/web-app-manifest-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <script>
+    (function(){
+      var s = localStorage.getItem('theme');
+      if (s) document.documentElement.dataset.theme = s;
+    })();
+  </script>
+  <style>
+    .error-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      gap: 16px;
+    }
+    .error-code {
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      opacity: .3;
+    }
+    .error-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .error-desc {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 320px;
+    }
+  </style>
+</head>
+<body>
+  <div class="error-page">
+    <div class="error-code">404</div>
+    <p class="error-title" id="err-title">Page introuvable</p>
+    <p class="error-desc" id="err-desc">Cette page n'existe pas ou a été déplacée.</p>
+    <a href="/" class="btn btn--accent" id="err-btn" style="margin-top:8px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span id="err-btn-text">Retour à l'accueil</span>
+    </a>
+    <script>
+      if (localStorage.getItem('lang') === 'en') {
+        document.getElementById('err-title').textContent   = 'Page not found';
+        document.getElementById('err-desc').textContent    = 'This page doesn\'t exist or has been moved.';
+        document.getElementById('err-btn-text').textContent = 'Back to home';
+      }
+    </script>
+  </div>
+</body>
+</html>
