@@ -1,5 +1,5 @@
-// ─── Google Analytics — Bandeau cookie RGPD ──────────────────────────────────
-// Partagé entre index.html et 404.html
+// ─── Google Analytics — GDPR Cookie Banner ────────────────────────────────────
+// Shared between index.html and 404.html
 (function () {
   var COOKIE = 'ga_consent';
   var GA_ID  = 'G-V3SCLH68WF';
@@ -33,7 +33,7 @@
     b.style.transition = 'transform 0.35s ease-in, opacity 0.35s ease-in';
     b.style.transform = 'translateX(-50%) translateY(calc(100% + 1.25rem))';
     b.style.opacity = '0';
-    setTimeout(function () { if (b.parentNode) b.parentNode.removeChild(b); }, 360);
+    setTimeout(function () { b.remove(); }, 360);
   }
 
   function showBanner() {

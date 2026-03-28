@@ -54,7 +54,7 @@ const translations = {
     'exp.laps.role':    'Développeur Data & Analytique',
     'exp.laps.start':   'Févr. 2024',
     'exp.laps.end':     "Aujourd'hui",
-    'exp.laps.total':   `${currentJobDuration('fr')} · Montréal, Québec 🇨🇦`,
+    'exp.laps.total':   `${currentJobDuration('fr')} · Montréal, QC 🇨🇦`,
     'exp.laps.desc':    'Conception et mise en place de l\'ensemble de l\'infrastructure de données de Laps, réseau e-commerce spécialisé dans le matériel de golf, depuis l\'ingestion et le traitement jusqu\'à la valorisation des données via des rapports stratégiques et opérationnels. Participation au développement d\'un système automatisé de gestion des prix d\'achat et de vente, renforçant les marges et la compétitivité de l\'entreprise.',
     'exp.laps.li1':     'Conception, déploiement et automatisation de flux de données en Python sur AWS',
     'exp.laps.li2':     'Modélisation et implémentation d\'un entrepôt de données centralisé',
@@ -126,7 +126,7 @@ const translations = {
 
     // Projects
     'projects.title':        '🚀 Projets',
-    'projects.etl.meta':     'Projet personnel · Juin – Sept. 2025 · 4 mois',
+    'projects.etl.meta':     'Personnel · Juin - Sept. 2025 · 4 mois',
     'projects.etl.desc':     'Développement d\'un framework ETL serverless sur AWS Lambda, permettant la création de pipelines modulaires, évolutifs et économiques pour l\'automatisation des flux de données.',
     'projects.etl.title': 'AWS Lambda ETL — Framework de pipelines serverless',
     'projects.copill.title': 'CoPill — Pilulier connecté',
@@ -137,7 +137,7 @@ const translations = {
     'projects.swarm.desc2':  'Dans ce cadre, nous avons migré l\'API d\'un modèle REST vers un modèle GraphQL implémenté en Java avec Spring Boot. La migration a apporté une plus grande flexibilité dans les requêtes, réduit la sur-récupération des données, et a facilité la maintenance et l\'évolution de l\'API grâce à un schéma typé et auto-documenté.',
     'projects.group.perso':   'Personnel',
     'projects.group.academic':'Académique',
-    'projects.badge.perso':   'Perso',
+    'projects.badge.perso':   'Personnel',
     'projects.badge.academic':'Académique',
     'projects.pinned':        'Épinglé',
     'projects.readmore': 'Lire la suite',
@@ -203,7 +203,7 @@ const translations = {
     'exp.laps.role':    'Data & Analytics Engineer',
     'exp.laps.start':   'Feb. 2024',
     'exp.laps.end':     'Present',
-    'exp.laps.total':   `${currentJobDuration('en')} · Montreal, Québec 🇨🇦`,
+    'exp.laps.total':   `${currentJobDuration('en')} · Montreal, QC 🇨🇦`,
     'exp.laps.desc':    'Designed and implemented the entire data infrastructure for Laps, an e-commerce network specialized in golf equipment, covering everything from data ingestion and processing to value creation through strategic and operational reporting. Contributed to the development of an automated pricing system for purchase and sales, strengthening the company\'s margins and competitiveness.',
     'exp.laps.li1':     'Designed, deployed, and automated data pipelines in Python on AWS',
     'exp.laps.li2':     'Modeled and implemented a centralized data warehouse',
@@ -275,7 +275,7 @@ const translations = {
 
     // Projects
     'projects.title':        '🚀 Projects',
-    'projects.etl.meta':     'Personal project · Jun. – Sep. 2025 · 4 mos',
+    'projects.etl.meta':     'Personal · Jun. - Sep. 2025 · 4 mos',
     'projects.etl.desc':     'Developed a serverless ETL framework on AWS Lambda, enabling the creation of modular, scalable, and cost-effective pipelines for automated data workflows.',
     'projects.etl.title': 'AWS Lambda ETL — Serverless Pipeline Framework',
     'projects.copill.title': 'CoPill — Connected Pillbox',

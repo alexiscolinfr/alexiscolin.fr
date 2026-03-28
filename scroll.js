@@ -256,14 +256,13 @@ function attachReadMore(btn, bodyEl, moreKey, lessKey) {
   const span = btn.querySelector('[data-i18n]');
   btn.addEventListener('click', () => {
     const expanded = bodyEl.classList.toggle('expanded');
+    const t = translations[currentLang] || translations.fr;
     btn.classList.toggle('expanded', expanded);
     if (expanded) {
-      span.textContent = (translations[currentLang] || translations.fr)[lessKey];
+      span.textContent = t[lessKey];
     } else {
       // wait for close animation to finish before changing the text
-      setTimeout(() => {
-        span.textContent = (translations[currentLang] || translations.fr)[moreKey];
-      }, 400);
+      setTimeout(() => { span.textContent = t[moreKey]; }, 400);
     }
   });
 }
@@ -335,8 +334,7 @@ const revealObserver = new IntersectionObserver(
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ─── Sticky Nav show/hide ─────────────────────────────────────────────────────
-const nav            = document.getElementById('siteNav');
-const langToggleWrap = document.querySelector('.lang-toggle-wrap');
+const nav = document.getElementById('siteNav');
 
 (function () {
   const THRESHOLD = 80;
@@ -347,7 +345,6 @@ const langToggleWrap = document.querySelector('.lang-toggle-wrap');
     if (show === navVisible) return;
     navVisible = show;
     nav.classList.toggle('visible', show);
-    langToggleWrap.classList.toggle('in-nav', show);
   }
 
   window.addEventListener('scroll', updateNav, { passive: true });
