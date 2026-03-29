@@ -38,7 +38,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/web-app-manifest-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <script>
     (function(){
       try {
@@ -533,8 +533,7 @@
           <p class="project-meta">UQAC · Janv. – Avr. 2019 · 4 mois</p>
           <div class="project-desc">
             <div class="project-desc-body" id="descSwarm">
-              <p data-i18n="projects.swarm.desc1">Le projet Swarm Debugging consiste à développer un plug-in sur l'IDE Eclipse qui facilite le débogage collaboratif des développeurs via le crowdsourcing.</p>
-              <p data-i18n="projects.swarm.desc2">Dans ce cadre, nous avons migré l'API d'un modèle REST vers un modèle GraphQL implémenté en Java avec Spring Boot. La migration a apporté une plus grande flexibilité dans les requêtes, réduit la sur-récupération des données, et a facilité la maintenance et l'évolution de l'API grâce à un schéma typé et auto-documenté.</p>
+              <p><span data-i18n="projects.swarm.desc1">Le projet Swarm Debugging consiste à développer un plug-in sur l'IDE Eclipse qui facilite le débogage collaboratif des développeurs via le crowdsourcing.</span> <span data-i18n="projects.swarm.desc2">Dans ce cadre, nous avons migré l'API d'un modèle REST vers un modèle GraphQL implémenté en Java avec Spring Boot. La migration a apporté une plus grande flexibilité dans les requêtes, réduit la sur-récupération des données, et a facilité la maintenance et l'évolution de l'API grâce à un schéma typé et auto-documenté.</span></p>
               <div class="project-desc-fade"></div>
             </div>
             <button type="button" class="project-readmore" data-desc="descSwarm">
@@ -607,6 +606,9 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-top">
+        <div class="footer-left">
+          <p class="footer-tagline"><span data-i18n="hero.role">Développeur de données</span> · Montréal</p>
+        </div>
         <div class="footer-right">
           <nav class="footer-socials" aria-label="Réseaux sociaux" data-i18n-aria="aria.socials">
             <a href="tel:+14385436098" aria-label="Téléphone">

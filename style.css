@@ -700,10 +700,10 @@ header h1 {
   font-size: 11px;
   font-weight: 600;
   color: var(--accent);
-  opacity: 0.65;
+  opacity: 0.8;
   cursor: pointer;
   letter-spacing: 0.2px;
-  transition: color .15s, opacity .15s;
+  transition: opacity .15s;
 }
 .about-toggle:hover {
   opacity: 1;
@@ -1075,12 +1075,13 @@ header h1 {
   font-family: inherit;
   font-size: 11px;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--accent);
+  opacity: 0.8;
   cursor: pointer;
   letter-spacing: 0.2px;
-  transition: color .15s;
+  transition: opacity .15s;
 }
-.tasks-toggle:hover { color: var(--text); }
+.tasks-toggle:hover { opacity: 1; }
 .tasks-toggle__chevron { transition: transform .3s ease; }
 .tasks-toggle.expanded .tasks-toggle__chevron { transform: rotate(180deg); }
 
@@ -1126,6 +1127,7 @@ header h1 {
   margin-top: 6px;
   margin-bottom: 8px;
 }
+.project-card .tags { margin-top: 16px; margin-bottom: 0; }
 
 .tag {
   display: inline-block;
@@ -1283,7 +1285,7 @@ header h1 {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 4px;
+  margin-top: 8px;
   background: none;
   border: none;
   padding: 0;
@@ -1291,7 +1293,7 @@ header h1 {
   font-size: 11px;
   font-weight: 600;
   color: var(--accent);
-  opacity: 0.65;
+  opacity: 0.8;
   cursor: pointer;
   letter-spacing: 0.2px;
   transition: opacity .15s;
@@ -1365,8 +1367,20 @@ footer {
 .footer-top {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 16px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.footer-tagline {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
 }
 
 .footer-right {
@@ -1941,6 +1955,17 @@ footer a:not(.back-to-top):hover {
 
   /* Projects / misc grid in 1 column */
   .misc-grid { grid-template-columns: 1fr; }
+
+  /* Footer: hide tagline on small screens */
+  .footer-left { display: none; }
+
+  /* Project tags: smaller text on mobile */
+  .project-card .tags .tag { font-size: 8.5px; }
+}
+
+/* GitHub overlay: always visible on touch devices */
+@media (hover: none) {
+  .project-overlay { opacity: 0.75; }
 }
 
 /* ═══════════════════════════════════════════
@@ -2150,15 +2175,15 @@ footer a:not(.back-to-top):hover {
   justify-content: space-between;
   gap: 1.5rem;
   width: calc(100% - 2rem);
-  max-width: 560px;
-  padding: 0.75rem 1.25rem;
+  max-width: 680px;
+  padding: 0.6rem 1.1rem;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-lg);
   color: var(--muted);
   font-family: var(--font);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   box-sizing: border-box;
   z-index: 9999;
 }
@@ -2166,6 +2191,8 @@ footer a:not(.back-to-top):hover {
 .cookie-banner__text {
   margin: 0;
   line-height: 1.4;
+  flex: 1;
+  white-space: nowrap;
 }
 
 .cookie-banner__actions {
