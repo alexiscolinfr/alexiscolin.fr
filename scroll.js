@@ -333,22 +333,24 @@ const revealObserver = new IntersectionObserver(
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ─── Sticky Nav show/hide ─────────────────────────────────────────────────────
+// ─── Sticky Nav show/hide (desktop only) ─────────────────────────────────────
 const nav = document.getElementById('siteNav');
-
 (function () {
-  const THRESHOLD = 80;
+  const mq = window.matchMedia('(min-width: 901px)');
   let navVisible = false;
 
-  function updateNav() {
-    const show = window.scrollY > THRESHOLD;
+  function setNav(show) {
     if (show === navVisible) return;
     navVisible = show;
     nav.classList.toggle('visible', show);
   }
 
-  window.addEventListener('scroll', updateNav, { passive: true });
-  updateNav();
+  window.addEventListener('scroll', () => {
+    if (mq.matches) setNav(window.scrollY > 80);
+  }, { passive: true });
+
+  // On resize to mobile, remove visible class
+  mq.addEventListener('change', e => { if (!e.matches) setNav(false); });
 })();
 
 // ─── Active nav link ──────────────────────────────────────────────────────────
@@ -408,7 +410,7 @@ sections.forEach(s => activeObserver.observe(s));
     btn.addEventListener('click', () => {
       const dark = !currentlyDark();
       html.dataset.theme = dark ? 'dark' : 'light';
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
+      try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch(e) {}
     });
   }
 })();

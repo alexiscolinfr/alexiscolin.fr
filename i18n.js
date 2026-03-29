@@ -20,7 +20,7 @@ function currentJobDuration(lang) {
 }
 
 // ─── Language state ───────────────────────────────────────────────────────────
-let currentLang = localStorage.getItem('lang') || 'fr';
+let currentLang = (function(){ try { return localStorage.getItem('lang'); } catch(e) { return null; } })() || 'fr';
 
 // ─── Translations ─────────────────────────────────────────────────────────────
 const translations = {
@@ -379,7 +379,7 @@ function applyLang(lang) {
     span.classList.toggle('active', span.dataset.lang === lang);
   });
 
-  localStorage.setItem('lang', lang);
+  try { localStorage.setItem('lang', lang); } catch(e) {}
 
   if (typeof updateSkillDurations === 'function') updateSkillDurations(lang);
 }

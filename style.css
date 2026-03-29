@@ -1450,23 +1450,25 @@ footer a:not(.back-to-top):hover {
 }
 
 .site-nav.visible {
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  background: var(--bg); /* fallback: browsers without color-mix() */
+  background: color-mix(in srgb, var(--bg) 95%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--border);
 }
 
-/* Buttons — positioned on the right in the nav flow */
+/* Buttons — absolutely positioned so nav-links center across the full width */
 .lang-toggle-wrap {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-left: auto;
   padding-right: 16px;
-  flex-shrink: 0;
 }
 
-/* Links — hidden at rest, visible when the nav is active */
 .nav-links {
   display: flex;
   justify-content: center;
@@ -1843,47 +1845,31 @@ footer a:not(.back-to-top):hover {
 }
 
 /* ── Nav responsive ─────────────────────────────────────────────────────────
-   > 850px  : centered links, buttons in the flow on the right
-   ≤ 850px  : horizontally scrollable links (constrained space)
-   ≤ 600px  : absolute buttons outside the flow, links re-centered, buttons hidden on scroll
+   > 900px  : sticky nav with centered links (appears on scroll)
+   ≤ 900px  : nav hidden, theme/lang buttons scroll away with page
 ── */
-@media (max-width: 850px) {
+@media (max-width: 900px) {
+  /* Mobile: no nav bar — only theme/lang buttons visible at top, scroll away with page */
   .nav-links {
-    overflow-x: auto;
-    scrollbar-width: none;
-    justify-content: flex-start;
-    padding: 6px 16px 6px 10px;
-    gap: 0;
-    -webkit-mask-image: linear-gradient(to right, black calc(100% - 20px), transparent 100%);
-    mask-image: linear-gradient(to right, black calc(100% - 20px), transparent 100%);
+    display: none;
   }
-  .nav-links::-webkit-scrollbar { display: none; }
+
+  .site-nav {
+    position: absolute;
+    min-height: 44px;
+  }
 }
 
 @media (max-width: 600px) {
-  /* Buttons outside the flow: links take full width without sliding */
-  .lang-toggle-wrap {
+  .project-card[data-pinned] .project-header::after {
     position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    padding-right: 10px;
+    top: 16px;
+    right: 18px;
     margin-left: 0;
   }
-  .nav-links { justify-content: center; }
 
-  /* Buttons: fade on scroll in sync with the nav appearing */
-  .site-nav.visible .theme-toggle,
-  .site-nav.visible .lang-toggle {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .nav-links a {
-    font-size: 10px;
-    padding: 4px 7px;
-    letter-spacing: 0.2px;
+  .project-card[data-pinned] .project-header {
+    padding-right: 28px;
   }
 
   .lang-toggle {
