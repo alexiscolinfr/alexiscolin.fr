@@ -1219,7 +1219,7 @@ header h1 {
 .project-header {
   margin-bottom: 4px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   flex-wrap: wrap;
 }
@@ -1227,6 +1227,24 @@ header h1 {
 .project-header h3 {
   font-size: 13px;
   font-weight: 700;
+}
+
+.project-title-sep { display: none; }
+.project-title-sub {
+  display: block;
+  font-size: 0.82em;
+  font-weight: 500;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.project-header h3 .contract-badge {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.project-header h3 > span:first-child {
+  vertical-align: middle;
 }
 
 .project-meta {
@@ -1281,11 +1299,18 @@ header h1 {
   opacity: 0;
 }
 
+.project-desc-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
 .project-readmore {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-top: 8px;
+  margin-top: 0;
   background: none;
   border: none;
   padding: 0;
@@ -1894,6 +1919,9 @@ footer a:not(.back-to-top):hover {
 
 /* ── 480 px : general layout ── */
 @media (max-width: 480px) {
+  .cookie-banner__actions { flex-direction: column; gap: 0.3rem; }
+  .cookie-banner__btn { text-align: center; }
+
   .stack-item span { font-size: 8.5px; }
 
   .timeline-desc       { font-size: 11px; }
@@ -1960,12 +1988,26 @@ footer a:not(.back-to-top):hover {
   .footer-left { display: none; }
 
   /* Project tags: smaller text on mobile */
-  .project-card .tags .tag { font-size: 8.5px; }
+  .project-card .tags .tag { font-size: 9px; }
 }
 
-/* GitHub overlay: always visible on touch devices */
+/* GitHub text link: visible only on touch devices */
+.project-github-link { display: none; }
 @media (hover: none) {
-  .project-overlay { opacity: 0.75; }
+  .project-overlay { display: none; }
+  .project-github-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: opacity .15s;
+  }
+  .project-github-link:hover { opacity: 1; }
 }
 
 /* ═══════════════════════════════════════════
@@ -2172,10 +2214,9 @@ footer a:not(.back-to-top):hover {
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1.5rem;
-  width: calc(100% - 2rem);
-  max-width: 680px;
+  width: max-content;
+  max-width: calc(100% - 2rem);
   padding: 0.6rem 1.1rem;
   background: var(--card);
   border: 1px solid var(--border);
@@ -2192,7 +2233,7 @@ footer a:not(.back-to-top):hover {
   margin: 0;
   line-height: 1.4;
   flex: 1;
-  white-space: nowrap;
+  min-width: 0;
 }
 
 .cookie-banner__actions {

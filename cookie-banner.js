@@ -53,6 +53,7 @@
       setCookie('refused'); hideBanner();
     });
     document.body.appendChild(banner);
+    if (typeof applyLang === 'function') applyLang(currentLang);
   }
 
   if (getCookie()) {

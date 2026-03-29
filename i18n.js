@@ -126,13 +126,19 @@ const translations = {
 
     // Projects
     'projects.title':        '🚀 Projets',
-    'projects.etl.meta':     'Personnel · Juin - Sept. 2025 · 4 mois',
+    'projects.etl.meta':     'Juin - Sept. 2025 · 4 mois',
     'projects.etl.desc':     'Développement d\'un framework ETL serverless sur AWS Lambda, permettant la création de pipelines modulaires, évolutifs et économiques pour l\'automatisation des flux de données.',
     'projects.etl.title': 'AWS Lambda ETL — Framework de pipelines serverless',
+    'projects.etl.title.main': 'AWS Lambda ETL',
+    'projects.etl.title.sub': 'Framework de pipelines serverless',
     'projects.copill.title': 'CoPill — Pilulier connecté',
+    'projects.copill.title.main': 'CoPill',
+    'projects.copill.title.sub': 'Pilulier connecté',
     'projects.copill.desc1': 'Projet de fin d\'études réalisé en équipe pour transformer un pilulier traditionnel en une solution connectée visant à améliorer l\'adhésion aux traitements (personnes âgées, patients, sportifs). Le projet couvrait l\'ensemble du cycle produit (discovery, spécifications, prototypage, tests utilisateurs et validation) ainsi que la gestion de projet (planification et suivi des itérations).',
     'projects.copill.desc2': 'Sur le plan technique, le prototype embarqué a été développé en Python sur une Raspberry Pi avec modules (LED, capteurs, écran, buzzer) et accompagné d\'une application Android en Java pour le pilotage et le suivi.',
     'projects.swarm.title':  'Swarm Debugging — Migration d\'API vers GraphQL',
+    'projects.swarm.title.main': 'Swarm Debugging',
+    'projects.swarm.title.sub': 'Migration d\'API vers GraphQL',
     'projects.swarm.desc1':  'Le projet Swarm Debugging consiste à développer un plug-in sur l\'IDE Eclipse qui facilite le débogage collaboratif des développeurs via le crowdsourcing.',
     'projects.swarm.desc2':  'Dans ce cadre, nous avons migré l\'API d\'un modèle REST vers un modèle GraphQL implémenté en Java avec Spring Boot. La migration a apporté une plus grande flexibilité dans les requêtes, réduit la sur-récupération des données, et a facilité la maintenance et l\'évolution de l\'API grâce à un schéma typé et auto-documenté.',
     'projects.group.perso':   'Personnel',
@@ -164,7 +170,8 @@ const translations = {
     'contact.error':               'Une erreur est survenue. Veuillez réessayer ou m\'écrire directement.',
 
     // Footer & aria
-    'footer.backtotop': 'Retour en haut',
+    'footer.backtotop':    'Retour en haut',
+    'projects.github.label': 'Voir sur GitHub',
     'aria.socials':     'Réseaux sociaux',
 
     // Cookie banner
@@ -275,13 +282,19 @@ const translations = {
 
     // Projects
     'projects.title':        '🚀 Projects',
-    'projects.etl.meta':     'Personal · Jun. - Sep. 2025 · 4 mos',
+    'projects.etl.meta':     'Jun. - Sep. 2025 · 4 mos',
     'projects.etl.desc':     'Developed a serverless ETL framework on AWS Lambda, enabling the creation of modular, scalable, and cost-effective pipelines for automated data workflows.',
     'projects.etl.title': 'AWS Lambda ETL — Serverless Pipeline Framework',
+    'projects.etl.title.main': 'AWS Lambda ETL',
+    'projects.etl.title.sub': 'Serverless Pipeline Framework',
     'projects.copill.title': 'CoPill — Connected Pillbox',
+    'projects.copill.title.main': 'CoPill',
+    'projects.copill.title.sub': 'Connected Pillbox',
     'projects.copill.desc1': 'Final-year team project to transform a traditional pillbox into a connected solution aimed at improving treatment adherence for seniors, patients, and athletes. The project covered the entire product lifecycle (discovery, specifications, prototyping, user testing, and validation) as well as project management (planning and iteration tracking).',
     'projects.copill.desc2': 'Technically, the embedded prototype was developed in Python on a Raspberry Pi with modules (LEDs, sensors, display, buzzer) and complemented by an Android application in Java for monitoring and control.',
     'projects.swarm.title':  'Swarm Debugging — API Migration to GraphQL',
+    'projects.swarm.title.main': 'Swarm Debugging',
+    'projects.swarm.title.sub': 'API Migration to GraphQL',
     'projects.swarm.desc1':  'Swarm Debugging is a project developing an Eclipse IDE plugin to facilitate collaborative debugging among developers via crowdsourcing.',
     'projects.swarm.desc2':  'As part of this project, we migrated the API from a REST model to a GraphQL model implemented in Java with Spring Boot. The migration provided more flexible queries, reduced data over-fetching, and simplified API maintenance and evolution thanks to a typed, self-documenting schema.',
     'projects.group.perso':   'Personal',
@@ -313,7 +326,8 @@ const translations = {
     'contact.error':               'Something went wrong. Please try again or reach out directly.',
 
     // Footer & aria
-    'footer.backtotop': 'Back to top',
+    'footer.backtotop':    'Back to top',
+    'projects.github.label': 'View on GitHub',
     'aria.socials':     'Social links',
 
     // Cookie banner
