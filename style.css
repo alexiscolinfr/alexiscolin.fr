@@ -356,7 +356,7 @@ header {
 .avatar-status[data-status="unavailable"] .avatar-status__dot { background: #a0a0a0; }
 
 header h1 {
-  font-size: 26px;
+  font-size: clamp(20px, 4.5vw, 26px);
   font-weight: 700;
   letter-spacing: -.5px;
   margin-top: 4px;
@@ -371,7 +371,7 @@ header h1 {
 
 .hero-role {
   color: var(--accent);
-  font-size: 14px;
+  font-size: clamp(12px, 2.5vw, 14px);
   font-weight: 500;
   letter-spacing: 0.01em;
 }
@@ -511,7 +511,7 @@ header h1 {
 }
 
 .section-title {
-  font-size: 11px;
+  font-size: clamp(9.5px, 2.2vw, 11px);
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--muted);
@@ -883,7 +883,7 @@ header h1 {
   color: var(--muted);
 }
 
-.timeline-group__header .timeline-header { gap: 5px; }
+.timeline-group__header .timeline-header { gap: 12px; }
 
 /* Global track center = 93 px in .timeline */
 .timeline-group__items {
@@ -963,8 +963,12 @@ header h1 {
   margin-bottom: 0;
 }
 
+.timeline-header .contract-badge {
+  margin-left: 6px;
+}
+
 .timeline-header h3 {
-  font-size: 13px;   /* slightly smaller than the company name (14 px) */
+  font-size: clamp(11px, 2.5vw, 13px);
   font-weight: 600;
 }
 
@@ -982,18 +986,33 @@ header h1 {
 
 /* Modifier: company name inside a group (must come after .company) */
 .company--group {
-  font-size: 13px;
+  font-size: clamp(11px, 2.5vw, 13px);
   font-weight: 800;
   letter-spacing: 0.6px;
   text-transform: uppercase;
 }
 
 .client-inline {
+  display: block;
   font-size: 11px;
   font-weight: 400;
   font-style: italic;
   color: var(--muted);
+  margin-bottom: 4px;
 }
+
+.client-link {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--muted);
+  text-decoration: none;
+  margin-bottom: 4px;
+}
+.client-link:hover { color: var(--accent); text-decoration: underline; }
+
+.date-short { display: none; }
 
 .contract-badge {
   display: inline-flex;
@@ -1934,8 +1953,11 @@ footer a:not(.back-to-top):hover {
     padding-top: 36px;
   }
 
-  header h1 { font-size: 22px; }
-  .hero-subtitle { font-size: 12px; }
+  .edu-abbr   { display: none; }
+  .date-long  { display: none; }
+  .edu-abbr   { display: none; }
+  .date-long  { display: none; }
+  .date-short { display: inline; }
 
   .avatar,
   .avatar-fallback {
@@ -1962,7 +1984,7 @@ footer a:not(.back-to-top):hover {
   .timeline-item    { grid-template-columns: 24px 1fr; gap: 0 8px; }
   .timeline-period  { display: none; }
   .tl-mobile        { display: inline; }
-  .timeline-header  { flex-direction: column; align-items: flex-start; gap: 5px; }
+  .timeline-header  { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 5px; }
   .timeline-meta    { margin-top: 4px; }
   /* Experience timeline line: repositioned to the center of the mobile track column */
   #experience .timeline::before { left: 12px; }

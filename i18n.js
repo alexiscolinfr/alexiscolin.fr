@@ -25,7 +25,9 @@ let currentLang = (function(){ try { return localStorage.getItem('lang'); } catc
 // ─── Translations ─────────────────────────────────────────────────────────────
 const translations = {
   fr: {
-    'hero.role':     'Développeur de données',
+    'hero.role':           'Développeur de données',
+    'hero.location':       'Montréal, QC',
+    'hero.location.short': 'Montréal',
     'links.cv':           'Télécharger le CV',
     'status.available':   'Disponible immédiatement',
     'status.open':        'En poste · À l\'écoute du marché',
@@ -67,7 +69,7 @@ const translations = {
     'exp.bialr1.start':  'Janv. 2023',
     'exp.bialr1.end':    'Déc. 2023',
     'exp.bialr1.meta':   '1 an',
-    'exp.bialr1.client': 'Bial-S & Clariane',
+    'exp.bialr1.client': 'Bial-S',
     'exp.bialr1.desc':   'Participation à l\'industrialisation d\'une plateforme décisionnelle Cloud automatisée sur AWS, permettant l\'ingestion, la visualisation et l\'analyse prédictive de données pour des Offices Publics de l\'Habitat. Parallèlement, pilotage d\'un centre de services MCO pour Clariane.',
     'exp.bialr1.li1':    'Conception, déploiement et automatisation de flux de données ETL avec Pentaho',
     'exp.bialr1.li2':    'Support transversal de la plateforme décisionnelle et intégration de nouveaux clients',
@@ -118,11 +120,14 @@ const translations = {
 
     // Education
     'edu.title':        '🎓 Formation',
-    'edu.miage.degree': 'Master Méthodes Informatiques Appliquées à la Gestion des Entreprises (MIAGE)',
-    'edu.miage.desc':   'Parcours Systèmes d\'Information de Gestion de Santé (SIGS).',
-    'edu.uqac.degree':  'Baccalauréat Informatique',
-    'edu.uqac.desc':    'Double diplômation DUETI (niveau Licence 3) avec l\'Université de Versailles Saint-Quentin-en-Yvelines (UVSQ).',
-    'edu.dut.degree':   'Diplôme Universitaire de Technologie en informatique (DUT)',
+    'edu.miage.degree': 'Master Méthodes Informatiques Appliquées à la Gestion des Entreprises - MIAGE',
+    'edu.miage.dates':  'Sept. 2019 – Juin 2021',
+    'edu.miage.desc':   'Parcours Systèmes d\'Information de Gestion de Santé.',
+    'edu.uqac.degree':  'Baccalauréat en Informatique',
+    'edu.uqac.dates':   'Sept. 2018 – Juin 2019',
+    'edu.uqac.desc':    'Double diplômation DUETI avec l\'Université de Versailles Saint-Quentin-en-Yvelines.',
+    'edu.dut.degree':   'Diplôme Universitaire de Technologie en Informatique',
+    'edu.dut.dates':    'Sept. 2016 – Juin 2018',
 
     // Projects
     'projects.title':        '🚀 Projets',
@@ -181,7 +186,9 @@ const translations = {
   },
 
   en: {
-    'hero.role':     'Data Engineer',
+    'hero.role':           'Data Engineer',
+    'hero.location':       'Montreal, QC',
+    'hero.location.short': 'Montreal',
     'links.cv':           'Download CV',
     'status.available':   'Available now',
     'status.open':        'Employed · Open to opportunities',
@@ -223,7 +230,7 @@ const translations = {
     'exp.bialr1.start':  'Jan. 2023',
     'exp.bialr1.end':    'Dec. 2023',
     'exp.bialr1.meta':   '1 yr',
-    'exp.bialr1.client': 'Bial-S & Clariane',
+    'exp.bialr1.client': 'Bial-S',
     'exp.bialr1.desc':   'Contributed to the industrialization of an automated cloud-based data platform on AWS, enabling data ingestion, visualization, and predictive analytics for Public Housing Offices. Alongside, led an Operations & Support service center for Clariane.',
     'exp.bialr1.li1':    'Designed, deployed, and automated ETL data pipelines with Pentaho',
     'exp.bialr1.li2':    'Provided cross-functional support for the data platform and integrated new clients',
@@ -274,11 +281,14 @@ const translations = {
 
     // Education
     'edu.title':        '🎓 Education',
-    'edu.miage.degree': "Master's degree in Computer Science Applied to Business Management (MIAGE)",
+    'edu.miage.degree': "Master's degree in Computer Science Applied to Business Management - MIAGE",
+    'edu.miage.dates':  'Sep. 2019 – Jun. 2021',
     'edu.miage.desc':   'Specialization in Health Management Information Systems.',
     'edu.uqac.degree':  "Bachelor's degree in Computer Science",
-    'edu.uqac.desc':    'Dual degree (DUETI) in collaboration with the University of Versailles Saint-Quentin-en-Yvelines (UVSQ).',
-    'edu.dut.degree':   "Associate's degree in Computer Science (DUT)",
+    'edu.uqac.dates':   'Sep. 2018 – Jun. 2019',
+    'edu.uqac.desc':    'Dual degree (DUETI) in collaboration with the University of Versailles Saint-Quentin-en-Yvelines.',
+    'edu.dut.degree':   "Associate's degree in Computer Science",
+    'edu.dut.dates':    'Sep. 2016 – Jun. 2018',
 
     // Projects
     'projects.title':        '🚀 Projects',
