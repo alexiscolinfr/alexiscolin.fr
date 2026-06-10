@@ -30,6 +30,12 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       <span id="err-btn-text">Retour à l'accueil</span>
     </a>
+    <nav class="error-nav" aria-label="Sections">
+      <a href="/#about"      id="err-l-about">À propos</a>
+      <a href="/#experience" id="err-l-exp">Expérience</a>
+      <a href="/#projects"   id="err-l-projects">Projets</a>
+      <a href="/#contact"    id="err-l-contact">Contact</a>
+    </nav>
     <script>
       try {
         if (localStorage.getItem('lang') === 'en') {
@@ -37,6 +43,10 @@
           document.getElementById('err-title').textContent    = 'Access forbidden';
           document.getElementById('err-desc').textContent     = 'You don\'t have permission to access this page.';
           document.getElementById('err-btn-text').textContent = 'Back to home';
+          document.getElementById('err-l-about').textContent    = 'About';
+          document.getElementById('err-l-exp').textContent      = 'Experience';
+          document.getElementById('err-l-projects').textContent = 'Projects';
+          document.getElementById('err-l-contact').textContent  = 'Contact';
         }
       } catch(e) {}
     </script>
