@@ -1,5 +1,5 @@
 // ─── Google Analytics — GDPR Cookie Banner ────────────────────────────────────
-// Shared between index.html and 404.html
+// Shared between index.html, 403.html, 404.html and privacy.html
 (function () {
   var COOKIE = 'ga_consent';
   var GA_ID  = 'G-V3SCLH68WF';
@@ -10,9 +10,21 @@
     document.cookie = COOKIE + '=' + val + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax';
   }
 
-  function getCookie() {
-    return document.cookie.split(';').some(function (c) {
-      return c.trim().startsWith(COOKIE + '=accepted');
+  // 'accepted' | 'refused' | null (no choice made yet)
+  function getConsent() {
+    var m = document.cookie.match(/(?:^|;\s*)ga_consent=(accepted|refused)/);
+    return m ? m[1] : null;
+  }
+
+  // Remove GA cookies (_ga, _ga_*) when consent is refused or withdrawn
+  function deleteGACookies() {
+    var expire = ';expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+    document.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (name === '_ga' || name.indexOf('_ga_') === 0) {
+        document.cookie = name + '=' + expire;
+        document.cookie = name + '=' + expire + ';domain=.' + location.hostname;
+      }
     });
   }
 
@@ -37,11 +49,13 @@
   }
 
   function showBanner() {
+    if (document.getElementById('cookie-banner')) return;
     var banner = document.createElement('div');
     banner.id = 'cookie-banner';
     banner.className = 'cookie-banner';
     banner.innerHTML =
-      '<p class="cookie-banner__text" data-i18n="cookie.text">Ce site utilise des cookies pour mesurer son audience.</p>' +
+      '<p class="cookie-banner__text"><span data-i18n="cookie.text">Ce site utilise des cookies pour mesurer son audience.</span> ' +
+      '<a class="cookie-banner__link" href="/privacy.html" data-i18n="cookie.more">En savoir plus</a></p>' +
       '<div class="cookie-banner__actions">' +
       '<button id="cookie-accept" class="cookie-banner__btn cookie-banner__btn--accept" data-i18n="cookie.accept">Accepter</button>' +
       '<button id="cookie-refuse" class="cookie-banner__btn cookie-banner__btn--refuse" data-i18n="cookie.refuse">Refuser</button>' +
@@ -50,15 +64,26 @@
       setCookie('accepted'); loadGA(); hideBanner();
     });
     banner.querySelector('#cookie-refuse').addEventListener('click', function () {
-      setCookie('refused'); hideBanner();
+      setCookie('refused'); deleteGACookies(); hideBanner();
     });
     document.body.appendChild(banner);
     if (typeof applyLang === 'function') applyLang(currentLang);
   }
 
-  if (getCookie()) {
+  var consent = getConsent();
+  if (consent === 'accepted') {
     loadGA();
-  } else {
+  } else if (consent === null) {
     document.addEventListener('DOMContentLoaded', showBanner);
   }
+
+  // "Manage cookies" (footer & privacy page): clear the stored choice and re-ask
+  document.addEventListener('DOMContentLoaded', function () {
+    var manage = document.getElementById('cookieManage');
+    if (manage) manage.addEventListener('click', function () {
+      deleteGACookies();
+      document.cookie = COOKIE + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+      showBanner();
+    });
+  });
 })();

@@ -1,4 +1,58 @@
 /* ═══════════════════════════════════════════
+   FONTS — Space Mono (self-hosted)
+   Latin + latin-ext subsets with the same unicode-range as Google Fonts:
+   the browser only downloads the files it actually needs.
+═══════════════════════════════════════════ */
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-700-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-700-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-400italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('assets/fonts/space-mono-400italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ═══════════════════════════════════════════
    SCROLL PROGRESS BAR
 ═══════════════════════════════════════════ */
 .scroll-progress {
@@ -98,9 +152,16 @@
   --card-hover:#fff;
   --border:    rgba(0,0,0,.08);
   --text:      #1c1712;
-  --muted:     #8a7d74;
-  --accent:    #b85c38;
+  --muted:     #6b5f55;   /* ≥ 4.5:1 on bg and card (WCAG AA) */
+  --accent:    #b85c38;   /* decorative only (lines, dots, backgrounds) */
+  --accent-text: #9d4a28; /* accent-colored text — ≥ 4.5:1 on bg/card */
+  --accent-btn:  #b85c38; /* button background with white text — ≥ 4.5:1 */
   --accent-soft: rgba(184,92,56,.12);
+  /* Contract badge text colors — lightened in dark mode for contrast */
+  --badge-green:  #3d7a52;
+  --badge-blue:   #3260a0;
+  --badge-ochre:  #8f6428;
+  --badge-purple: #5b50a0;
   --tag-bg:    rgba(0,0,0,.06);
   --tag-text:  #4a3f38;
   --radius:    14px;
@@ -119,9 +180,16 @@
   --card-hover:#493e35;
   --border:    rgba(255,255,255,.08);
   --text:      #f0e6dc;
-  --muted:     #9a8d84;
+  --muted:     #b3a89e;   /* ≥ 4.5:1 on bg and card (WCAG AA) */
   --accent:    #c96840;
+  --accent-text: #e29565; /* accent-colored text — ≥ 4.5:1 on bg/card */
+  --accent-btn:  #a34e2e; /* button background with white text — ≥ 4.5:1 */
+  --accent-dark: #8f4426;
   --accent-soft: rgba(201,104,64,.15);
+  --badge-green:  #82c79a;
+  --badge-blue:   #8fb6e8;
+  --badge-ochre:  #d4a35e;
+  --badge-purple: #ada3e0;
   --tag-bg:    rgba(255,255,255,.06);
   --tag-text:  #c5b8ae;
   --shadow:    0 2px 12px rgba(0,0,0,.30);
@@ -139,9 +207,16 @@
     --card-hover:#493e35;
     --border:    rgba(255,255,255,.08);
     --text:      #f0e6dc;
-    --muted:     #9a8d84;
+    --muted:     #b3a89e;   /* ≥ 4.5:1 on bg and card (WCAG AA) */
     --accent:    #c96840;
+    --accent-text: #e29565; /* accent-colored text — ≥ 4.5:1 on bg/card */
+    --accent-btn:  #a34e2e; /* button background with white text — ≥ 4.5:1 */
+    --accent-dark: #8f4426;
     --accent-soft: rgba(201,104,64,.15);
+    --badge-green:  #82c79a;
+    --badge-blue:   #8fb6e8;
+    --badge-ochre:  #d4a35e;
+    --badge-purple: #ada3e0;
     --tag-bg:    rgba(255,255,255,.06);
     --tag-text:  #c5b8ae;
     --shadow:    0 2px 12px rgba(0,0,0,.30);
@@ -251,17 +326,26 @@ header {
   box-shadow: var(--shadow-lg);
 }
 
-/* Status dot */
+/* Status dot — <button> for keyboard/screen-reader access */
 .avatar-status {
   position: absolute;
   bottom: 2px;
   right: 2px;
   width: 26px;
   height: 26px;
+  padding: 0;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
   border-radius: 50%;
   border: 3px solid var(--bg);
   cursor: default;
   z-index: 2;
+}
+
+.avatar-status:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* Colors per status */
@@ -329,6 +413,7 @@ header {
 }
 
 .avatar-status:hover .avatar-status__tooltip,
+.avatar-status:focus-visible .avatar-status__tooltip,
 .avatar-status__tooltip.is-open {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
@@ -370,7 +455,7 @@ header h1 {
 }
 
 .hero-role {
-  color: var(--accent);
+  color: var(--accent-text);
   font-size: clamp(12px, 2.5vw, 14px);
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -485,7 +570,7 @@ header h1 {
 
 
 .btn--accent {
-  background: var(--accent);
+  background: var(--accent-btn);
   border: 1px solid transparent;
   color: #fff;
   box-shadow: 0 2px 8px rgba(184,92,56,.25);
@@ -699,7 +784,7 @@ header h1 {
   font-family: inherit;
   font-size: 11px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   opacity: 0.8;
   cursor: pointer;
   letter-spacing: 0.2px;
@@ -981,7 +1066,7 @@ header h1 {
 
 .company {
   font-size: 11.5px;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 /* Modifier: company name inside a group (must come after .company) */
@@ -990,6 +1075,12 @@ header h1 {
   font-weight: 800;
   letter-spacing: 0.6px;
   text-transform: uppercase;
+}
+
+/* Company names that link to the company website */
+a.company:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .client-inline {
@@ -1010,7 +1101,7 @@ header h1 {
   text-decoration: none;
   margin-bottom: 4px;
 }
-.client-link:hover { color: var(--accent); text-decoration: underline; }
+.client-link:hover { color: var(--accent-text); text-decoration: underline; }
 
 .date-short { display: none; }
 
@@ -1030,27 +1121,32 @@ header h1 {
 
 .contract-badge--permanent {
   background: rgba(74, 124, 89, .08);
-  color: #3d7a52;
+  color: var(--badge-green);
 }
 
 .contract-badge--alternance {
   background: rgba(61, 107, 163, .08);
-  color: #3260a0;
+  color: var(--badge-blue);
 }
 
 .contract-badge--stage {
   background: rgba(143, 100, 40, .08);
-  color: #8f6428;
+  color: var(--badge-ochre);
 }
 
 .contract-badge--perso {
   background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .contract-badge--academic {
   background: rgba(91, 80, 160, .10);
-  color: #5b50a0;
+  color: var(--badge-purple);
+}
+
+.contract-badge--pro {
+  background: rgba(74, 124, 89, .08);
+  color: var(--badge-green);
 }
 
 /* ── Pinned card: add data-pinned on .project-card to activate ── */
@@ -1083,26 +1179,41 @@ header h1 {
   text-align: justify;
 }
 
-.tasks-toggle {
+/* Shared text-toggle buttons: experience tasks, project "read more",
+   and "show more projects". Common look here; per-button deltas below. */
+.tasks-toggle,
+.projects-more__btn,
+.project-readmore {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 6px;
+  padding: 0;
   background: none;
   border: none;
-  padding: 0;
   font-family: inherit;
   font-size: 11px;
   font-weight: 600;
-  color: var(--accent);
+  letter-spacing: 0.2px;
+  color: var(--accent-text);
   opacity: 0.8;
   cursor: pointer;
-  letter-spacing: 0.2px;
   transition: opacity .15s;
 }
-.tasks-toggle:hover { opacity: 1; }
-.tasks-toggle__chevron { transition: transform .3s ease; }
-.tasks-toggle.expanded .tasks-toggle__chevron { transform: rotate(180deg); }
+.tasks-toggle:hover,
+.projects-more__btn:hover,
+.project-readmore:hover { opacity: 1; }
+
+.tasks-toggle__chevron,
+.projects-more__chevron,
+.project-readmore__chevron {
+  flex-shrink: 0;
+  transition: transform .3s ease;
+}
+.tasks-toggle.expanded .tasks-toggle__chevron,
+.projects-more__btn.expanded .projects-more__chevron,
+.project-readmore.expanded .project-readmore__chevron { transform: rotate(180deg); }
+
+.tasks-toggle { margin-bottom: 6px; }
 
 .timeline-content ul {
   display: flex;
@@ -1132,7 +1243,7 @@ header h1 {
   content: '–';
   position: absolute;
   left: 0;
-  color: rgba(0,0,0,.28);
+  color: color-mix(in srgb, var(--text) 45%, transparent);
   font-size: 11px;
 }
 
@@ -1169,6 +1280,52 @@ header h1 {
   gap: 14px;
 }
 
+/* Projects beyond the 3 most recent live in a collapsible wrapper.
+   Smoothly expands/collapses by animating its height (grid-template-rows
+   0fr→1fr) together with opacity — no layout jump. */
+.projects-extra {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  /* visibility:hidden keeps the collapsed cards out of the tab order / a11y tree;
+     its change is delayed until the height+fade finish so focus stays reachable
+     during the collapse animation (WCAG 2.4.3). */
+  visibility: hidden;
+  transition: grid-template-rows .45s ease, opacity .4s ease, visibility 0s .45s;
+}
+
+.projects-extra__inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.projects-extra__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 14px;
+}
+
+#projects.show-all .projects-extra {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  visibility: visible;
+  transition: grid-template-rows .45s ease, opacity .4s ease, visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-extra,
+  .projects-more__chevron { transition: none; }
+}
+
+.projects-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+
+.projects-more__btn { gap: 5px; opacity: 0.7; }
+
 .project-card {
   background: var(--bg-alt);
   border: 1px solid var(--border);
@@ -1177,6 +1334,12 @@ header h1 {
   transition: background .15s, box-shadow .15s;
   position: relative;
   overflow: hidden;
+  scroll-margin-top: 60px; /* clear the sticky nav when deep-linked (#project-…) */
+}
+
+/* Deep-linked card: subtle accent ring so the visitor spots it */
+.project-card:target {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
 }
 
 
@@ -1216,6 +1379,33 @@ header h1 {
 
 .project-overlay:hover {
   opacity: 1;
+}
+
+/* Private project: overlay is shown on hover but not clickable.
+   Muted GitHub mark + lock icon signal that the code isn't available. */
+.project-overlay--private {
+  cursor: not-allowed;
+}
+
+.project-overlay--private:hover {
+  opacity: 0.9;
+}
+
+.project-overlay--private .overlay-github {
+  opacity: 0.5;
+}
+
+.project-overlay--private .overlay-lock {
+  right: 16px;
+  opacity: 0.9;
+}
+
+/* Overlay link: also visible on keyboard focus (WCAG 2.4.7) */
+.project-overlay:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+  border-radius: var(--radius-sm);
 }
 
 [data-theme="dark"] .project-overlay {
@@ -1325,36 +1515,6 @@ header h1 {
   margin-top: 4px;
 }
 
-.project-readmore {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 0;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--accent);
-  opacity: 0.8;
-  cursor: pointer;
-  letter-spacing: 0.2px;
-  transition: opacity .15s;
-}
-
-.project-readmore:hover {
-  opacity: 1;
-}
-
-.project-readmore__chevron {
-  transition: transform .3s ease;
-  flex-shrink: 0;
-}
-
-.project-readmore.expanded .project-readmore__chevron {
-  transform: rotate(180deg);
-}
 
 /* ═══════════════════════════════════════════
    MISC
@@ -1640,7 +1800,7 @@ footer a:not(.back-to-top):hover {
   gap: 8px;
 }
 
-/* Tool chip inside a card */
+/* Tool chip inside a card — <button>: click filters the experience timeline */
 .stack-item {
   display: flex;
   flex-direction: column;
@@ -1656,7 +1816,18 @@ footer a:not(.back-to-top):hover {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  font: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
   transition: background .15s, box-shadow .15s, filter .15s, opacity .15s;
+}
+
+/* Selected chip (outline so the level stripe box-shadow is preserved) */
+.stack-item.is-selected {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 
 .stack-item::after {
@@ -1666,7 +1837,7 @@ footer a:not(.back-to-top):hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--accent) 88%, transparent);
+  background: var(--accent-btn);
   color: #fff;
   font-size: 9px;
   font-weight: 700;
@@ -1728,6 +1899,42 @@ footer a:not(.back-to-top):hover {
 
 /* ── Skill dots — hidden, replaced by top stripe ── */
 .skill-dots { display: none; }
+
+/* ── Skill → experience cross-filter ── */
+.timeline-subitem,
+.timeline-group__header {
+  transition: opacity .25s ease;
+}
+
+#experience .skill-dim {
+  opacity: .3;
+}
+
+.tag.skill-match-tag {
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  color: var(--accent-text);
+}
+
+.skill-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 14px;
+  padding: 4px 11px;
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 20px;
+  font-family: inherit;
+  font-size: 11px;
+  color: var(--accent-text);
+  cursor: pointer;
+  transition: background .15s;
+}
+
+.skill-filter-pill:hover {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
+}
 
 /* ── Skills legend ── */
 .skills-legend {
@@ -1803,7 +2010,7 @@ footer a:not(.back-to-top):hover {
 .lang-level {
   font-size: 10px;
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-text);
   background: color-mix(in srgb, var(--accent) 10%, transparent);
   padding: 2px 8px;
   border-radius: 10px;
@@ -1974,6 +2181,7 @@ footer a:not(.back-to-top):hover {
     transform: translateX(calc(-50% - 35px)) translateY(5px);
   }
   .avatar-status:hover .avatar-status__tooltip,
+  .avatar-status:focus-visible .avatar-status__tooltip,
   .avatar-status__tooltip.is-open {
     transform: translateX(calc(-50% - 35px)) translateY(0);
   }
@@ -2024,7 +2232,7 @@ footer a:not(.back-to-top):hover {
     font-family: inherit;
     font-size: 11px;
     font-weight: 600;
-    color: var(--accent);
+    color: var(--accent-text);
     opacity: 0.8;
     text-decoration: none;
     transition: opacity .15s;
@@ -2217,6 +2425,10 @@ footer a:not(.back-to-top):hover {
   .project-desc-fade { display: none !important; }
   .project-readmore  { display: none !important; }
 
+  /* Skill filter: never print a filtered/dimmed timeline */
+  .skill-filter-pill { display: none !important; }
+  .skill-dim { opacity: 1 !important; }
+
   .project-card:hover > *:not(.project-overlay) {
     filter: none !important;
     opacity: 1 !important;
@@ -2275,12 +2487,119 @@ footer a:not(.back-to-top):hover {
 
 .cookie-banner__btn--accept {
   border: none;
-  background: var(--accent);
+  background: var(--accent-btn);
   color: #fff;
+}
+
+.cookie-banner__link {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
 }
 
 .cookie-banner__btn--refuse {
   border: 1px solid var(--border);
   background: transparent;
   color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════
+   ERROR PAGES (403 / 404) — shared styles, previously duplicated in each page
+═══════════════════════════════════════════ */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
+  gap: 16px;
+}
+
+.error-code {
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  opacity: .3;
+}
+
+.error-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.error-desc {
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 320px;
+}
+
+.error-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 18px;
+  margin-top: 4px;
+}
+
+.error-nav a {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-text);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity .15s;
+}
+
+.error-nav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ═══════════════════════════════════════════
+   LEGAL PAGE (privacy.html)
+═══════════════════════════════════════════ */
+.legal-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 20px 64px;
+}
+
+.legal-page h1 {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.legal-updated {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.legal-page h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  margin: 24px 0 8px;
+}
+
+.legal-page p {
+  font-size: 12.5px;
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.legal-page p a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-back {
+  margin-top: 32px;
 }

@@ -87,15 +87,19 @@ function renderSkills() {
     itemsDiv.className = 'skill-card__items';
 
     items.forEach(s => {
-      const div = document.createElement('div');
+      // <button> so the skill → experience filter is keyboard accessible
+      const div = document.createElement('button');
+      div.type = 'button';
       div.className = 'stack-item';
       div.dataset.level = s.level;
       div.dataset.skill = s.id;
+      div.setAttribute('aria-pressed', 'false');
 
       if (s.icon) {
         const img = document.createElement('img');
-        img.src = `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${s.icon}.svg`;
-        img.alt = s.name;
+        img.src = `assets/icons/${s.icon}.svg`;
+        img.alt = '';
+        img.loading = 'lazy';
         img.addEventListener('error', () => { img.style.display = 'none'; });
         div.appendChild(img);
       } else if (customIcons[s.id]) {
@@ -244,6 +248,7 @@ function generateExperienceTags() {
       .forEach(s => {
         const span = document.createElement('span');
         span.className = 'tag';
+        span.dataset.skill = s.id;
         span.textContent = skillNames[s.id] || s.id;
         container.appendChild(span);
       });
@@ -258,6 +263,7 @@ function attachReadMore(btn, bodyEl, moreKey, lessKey) {
     const expanded = bodyEl.classList.toggle('expanded');
     const t = translations[currentLang] || translations.fr;
     btn.classList.toggle('expanded', expanded);
+    btn.setAttribute('aria-expanded', String(expanded));
     if (expanded) {
       span.textContent = t[lessKey];
     } else {
@@ -276,8 +282,9 @@ if (aboutBody && aboutToggle) attachReadMore(aboutToggle, aboutBody, 'about.read
 document.querySelectorAll('.tasks-toggle').forEach(btn => {
   btn.addEventListener('click', () => {
     const ul = btn.nextElementSibling;
-    ul.classList.toggle('expanded');
-    btn.classList.toggle('expanded', ul.classList.contains('expanded'));
+    const expanded = ul.classList.toggle('expanded');
+    btn.classList.toggle('expanded', expanded);
+    btn.setAttribute('aria-expanded', String(expanded));
     updateToggleLabel(btn, btn, 'exp.tasks.hide', 'exp.tasks.show');
   });
 });
@@ -425,10 +432,122 @@ renderSkills();
 updateSkillDurations(initLang);
 generateExperienceTags();
 
+// ─── Skill → experience cross-filter ─────────────────────────────────────────
+// Click a skill chip to highlight the experiences where it was used
+// (data comes from roleSkills). Click again / × pill / Escape to clear.
+(() => {
+  const expSection = document.getElementById('experience');
+  const skillsContainer = document.querySelector('.skills-cards');
+  if (!expSection || !skillsContainer) return;
+
+  let activeSkill = null;
+  let pill = null;
+
+  const rolesUsing = skillId => new Set(
+    Object.keys(roleSkills).filter(r => roleSkills[r].skills.some(s => s.id === skillId))
+  );
+
+  function clearFilter() {
+    activeSkill = null;
+    skillsContainer.querySelectorAll('.stack-item.is-selected').forEach(el => {
+      el.classList.remove('is-selected');
+      el.setAttribute('aria-pressed', 'false');
+    });
+    expSection.querySelectorAll('.skill-dim').forEach(el => el.classList.remove('skill-dim'));
+    expSection.querySelectorAll('.skill-match-tag').forEach(el => el.classList.remove('skill-match-tag'));
+    if (pill) { pill.remove(); pill = null; }
+  }
+
+  function applyFilter(skillId, chip) {
+    clearFilter();
+    activeSkill = skillId;
+    chip.classList.add('is-selected');
+    chip.setAttribute('aria-pressed', 'true');
+
+    const matches = rolesUsing(skillId);
+    expSection.querySelectorAll('.timeline-subitem').forEach(item => {
+      const ok = item.dataset.role && matches.has(item.dataset.role);
+      item.classList.toggle('skill-dim', !ok);
+      if (ok) item.querySelectorAll(`.tag[data-skill="${skillId}"]`)
+        .forEach(t => t.classList.add('skill-match-tag'));
+    });
+    expSection.querySelectorAll('.timeline-group').forEach(group => {
+      const header = group.querySelector('.timeline-group__header');
+      const any = [...group.querySelectorAll('.timeline-subitem')]
+        .some(i => i.dataset.role && matches.has(i.dataset.role));
+      if (header) header.classList.toggle('skill-dim', !any);
+    });
+
+    pill = document.createElement('button');
+    pill.type = 'button';
+    pill.className = 'skill-filter-pill';
+    const label = document.createElement('span');
+    label.dataset.i18n = 'skills.filter';
+    label.textContent = (translations[currentLang] || translations.fr)['skills.filter'];
+    const name = document.createElement('strong');
+    name.textContent = skillNames[skillId] || skillId;
+    const cross = document.createElement('span');
+    cross.setAttribute('aria-hidden', 'true');
+    cross.textContent = '×';
+    pill.append(label, ' ', name, ' ', cross);
+    pill.addEventListener('click', clearFilter);
+    expSection.querySelector('.section-title').insertAdjacentElement('afterend', pill);
+
+    expSection.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  }
+
+  skillsContainer.addEventListener('click', e => {
+    const chip = e.target.closest('.stack-item');
+    if (!chip || !chip.dataset.skill) return;
+    if (activeSkill === chip.dataset.skill) clearFilter();
+    else applyFilter(chip.dataset.skill, chip);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && activeSkill) clearFilter();
+  });
+})();
+
 // ─── Project read more ────────────────────────────────────────────────────────
 document.querySelectorAll('.project-readmore').forEach(btn => {
   attachReadMore(btn, document.getElementById(btn.dataset.desc), 'projects.readmore', 'projects.readless');
 });
+
+// ─── Projects: show more / less (reveal cards beyond the first 3) ──────────────
+(() => {
+  const toggle  = document.getElementById('projectsToggle');
+  const section = document.getElementById('projects');
+  if (!toggle || !section) return;
+  const span = toggle.querySelector('[data-i18n]');
+
+  function setExpanded(expanded) {
+    const t = translations[currentLang] || translations.fr;
+    section.classList.toggle('show-all', expanded);
+    toggle.classList.toggle('expanded', expanded);
+    toggle.setAttribute('aria-expanded', String(expanded));
+    span.setAttribute('data-i18n', expanded ? 'projects.showless' : 'projects.showmore');
+    span.textContent = expanded ? t['projects.showless'] : t['projects.showmore'];
+  }
+
+  toggle.addEventListener('click', () => setExpanded(!section.classList.contains('show-all')));
+
+  // Deep links (e.g. #project-swarm): when the hash targets a card inside the
+  // collapsed block, expand it first, then scroll once the height animation
+  // is done (the card's final position isn't known before that).
+  function revealHashTarget() {
+    const id = location.hash.slice(1);
+    if (!id) return;
+    const target = document.getElementById(id);
+    if (!target || !target.closest('#projectsExtra')) return;
+    const wasExpanded = section.classList.contains('show-all');
+    setExpanded(true);
+    setTimeout(() => {
+      target.scrollIntoView({ block: 'start', behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    }, wasExpanded || prefersReducedMotion ? 0 : 480);
+  }
+  window.addEventListener('hashchange', revealHashTarget);
+  revealHashTarget();
+})();
 
 // ─── Status dot: tap-to-toggle on touch devices ───────────────────────────────
 (() => {

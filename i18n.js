@@ -33,6 +33,14 @@ const translations = {
     'status.open':        'En poste · À l\'écoute du marché',
     'status.unavailable': 'Non disponible pour le moment',
 
+    // Nav (same sections as *.title, without the emoji)
+    'nav.about':    '👤 À propos',
+    'nav.exp':      '💼 Expérience',
+    'nav.skills':   '⚡ Compétences',
+    'nav.edu':      '🎓 Formation',
+    'nav.projects': '🚀 Projets',
+    'nav.contact':  '✉️ Contact',
+
     // About
     'about.title':    '👤 À propos',
     'stat.exp':       'ans d\'expérience',
@@ -41,7 +49,7 @@ const translations = {
     'about.readmore': 'Lire la suite',
     'about.readless': 'Réduire',
     'about.p1': 'Développeur de données passionné et polyvalent, je conçois et développe des systèmes décisionnels qui aident les entreprises à prendre des décisions stratégiques éclairées. Chez Laps, un réseau de plateformes e-commerce, je contribue activement à bâtir une infrastructure complète pour collecter, transformer et visualiser les données.',
-    'about.p2': 'Mon parcours m\'a permis de développer une expertise complète sur l\'ensemble de la chaîne de traitement des données, dans des contextes et secteurs variés. J\'ai conçu et automatisé des pipelines de données, modélisé des data warehouses adaptés aux besoins métiers, et réalisé des rapports pertinents avec différents outils de visualisation.',
+    'about.p2': 'Mon parcours m\'a permis de développer une expertise complète sur l\'ensemble de la chaîne de traitement des données, dans des contextes et secteurs variés. J\'ai conçu et automatisé des pipelines de données, modélisé des data warehouses adaptés aux besoins métiers, et réalisé des rapports pertinents avec différents outils de visualisation. Plus récemment, j\'ai étendu cette chaîne à l\'IA générative, en connectant les données de l\'entreprise aux assistants IA de façon gouvernée et sécurisée.',
     'about.p3': 'J\'apprécie particulièrement de collaborer avec des équipes multidisciplinaires pour transformer les données brutes en insights opérationnels, facilitant ainsi une prise de décision efficace et l\'amélioration des performances organisationnelles.',
 
     // Experience
@@ -57,10 +65,11 @@ const translations = {
     'exp.laps.start':   'Févr. 2024',
     'exp.laps.end':     "Aujourd'hui",
     'exp.laps.total':   `${currentJobDuration('fr')} · Montréal, QC 🇨🇦`,
-    'exp.laps.desc':    'Conception et mise en place de l\'ensemble de l\'infrastructure de données de Laps, réseau e-commerce spécialisé dans le matériel de golf, depuis l\'ingestion et le traitement jusqu\'à la valorisation des données via des rapports stratégiques et opérationnels. Participation au développement d\'un système automatisé de gestion des prix d\'achat et de vente, renforçant les marges et la compétitivité de l\'entreprise.',
+    'exp.laps.desc':    'Conception et mise en place de l\'ensemble de l\'infrastructure de données de Laps, réseau e-commerce spécialisé dans le matériel de golf, depuis l\'ingestion et le traitement jusqu\'à la valorisation des données via des rapports stratégiques et opérationnels et leur exposition aux assistants IA (serveur MCP). Participation au développement d\'un système automatisé de gestion des prix d\'achat et de vente, renforçant les marges et la compétitivité de l\'entreprise.',
     'exp.laps.li1':     'Conception, déploiement et automatisation de flux de données en Python sur AWS',
     'exp.laps.li2':     'Modélisation et implémentation d\'un entrepôt de données centralisé',
     'exp.laps.li3':     'Développement de rapports et tableaux de bord opérationnels avec Grafana',
+    'exp.laps.li4':     'Serveur MCP en Python exposant l\'entrepôt aux assistants IA, gouverné et sécurisé',
 
     'exp.bialr.start':   'Sept. 2020',
     'exp.bialr.end':     'Déc. 2023',
@@ -103,6 +112,7 @@ const translations = {
 
     // Skills
     'skills.title':        '⚡ Compétences',
+    'skills.filter':       'Expériences avec',
     'skills.level.expert': 'Expertise',
     'skills.level.mid':    'Maîtrise',
     'skills.level.basic':  'Notions',
@@ -136,6 +146,11 @@ const translations = {
     'projects.etl.title': 'AWS Lambda ETL — Framework de pipelines serverless',
     'projects.etl.title.main': 'AWS Lambda ETL',
     'projects.etl.title.sub': 'Framework de pipelines serverless',
+    'projects.mcp.title.main': 'MCP Server',
+    'projects.mcp.title.sub': 'Accès IA gouverné à l\'entrepôt de données',
+    'projects.mcp.meta':     'Laps · Avr. – Juin 2026',
+    'projects.mcp.desc':     'Développement d\'un serveur MCP en Python (FastMCP) donnant aux assistants IA un accès gouverné à l\'entrepôt de données de Laps : requêtes en lecture seule validées (liste blanche de tables, limites et délais imposés), masquage automatique des données personnelles et journal d\'audit complet.',
+    'projects.badge.pro':    'Professionnel',
     'projects.copill.title': 'CoPill — Pilulier connecté',
     'projects.copill.title.main': 'CoPill',
     'projects.copill.title.sub': 'Pilulier connecté',
@@ -153,6 +168,8 @@ const translations = {
     'projects.pinned':        'Épinglé',
     'projects.readmore': 'Lire la suite',
     'projects.readless': 'Réduire',
+    'projects.showmore': 'Voir plus de projets',
+    'projects.showless': 'Voir moins de projets',
     'projects.github':       'Voir sur GitHub',
 
     // Misc
@@ -176,11 +193,13 @@ const translations = {
 
     // Footer & aria
     'footer.backtotop':    'Retour en haut',
+    'footer.privacy':      'Confidentialité',
     'projects.github.label': 'Voir sur GitHub',
     'aria.socials':     'Réseaux sociaux',
 
     // Cookie banner
     'cookie.text':   'Ce site utilise des cookies pour mesurer son audience.',
+    'cookie.more':   'En savoir plus',
     'cookie.accept': 'Accepter',
     'cookie.refuse': 'Refuser',
   },
@@ -194,6 +213,14 @@ const translations = {
     'status.open':        'Employed · Open to opportunities',
     'status.unavailable': 'Not available at the moment',
 
+    // Nav (same sections as *.title, without the emoji)
+    'nav.about':    '👤 About',
+    'nav.exp':      '💼 Experience',
+    'nav.skills':   '⚡ Skills',
+    'nav.edu':      '🎓 Education',
+    'nav.projects': '🚀 Projects',
+    'nav.contact':  '✉️ Contact',
+
     // About
     'about.title':    '👤 About',
     'stat.exp':       'years of experience',
@@ -202,7 +229,7 @@ const translations = {
     'about.readmore': 'Read more',
     'about.readless': 'Show less',
     'about.p1': 'Passionate and versatile Data & Analytics Engineer, I design and build decision-support systems that help businesses make informed strategic decisions. At Laps, a network of e-commerce platforms, I actively contribute to building a complete data infrastructure for collecting, transforming, and visualizing data.',
-    'about.p2': 'My career path has allowed me to develop comprehensive expertise across the entire data processing chain, in various industries and contexts. I have designed and automated data pipelines, modeled data warehouses tailored to business needs, and created insightful reports using a range of visualization tools.',
+    'about.p2': 'My career path has allowed me to develop comprehensive expertise across the entire data processing chain, in various industries and contexts. I have designed and automated data pipelines, modeled data warehouses tailored to business needs, and created insightful reports using a range of visualization tools. More recently, I have extended that chain to generative AI, connecting company data to AI assistants in a governed, secure way.',
     'about.p3': 'I particularly enjoy working with multidisciplinary teams to turn raw data into actionable insights, supporting effective decision-making and driving organizational performance improvements.',
 
     // Experience
@@ -218,10 +245,11 @@ const translations = {
     'exp.laps.start':   'Feb. 2024',
     'exp.laps.end':     'Present',
     'exp.laps.total':   `${currentJobDuration('en')} · Montreal, QC 🇨🇦`,
-    'exp.laps.desc':    'Designed and implemented the entire data infrastructure for Laps, an e-commerce network specialized in golf equipment, covering everything from data ingestion and processing to value creation through strategic and operational reporting. Contributed to the development of an automated pricing system for purchase and sales, strengthening the company\'s margins and competitiveness.',
+    'exp.laps.desc':    'Designed and implemented the entire data infrastructure for Laps, an e-commerce network specialized in golf equipment, covering everything from data ingestion and processing to value creation through strategic and operational reporting and data exposure to AI assistants (MCP server). Contributed to the development of an automated pricing system for purchase and sales, strengthening the company\'s margins and competitiveness.',
     'exp.laps.li1':     'Designed, deployed, and automated data pipelines in Python on AWS',
     'exp.laps.li2':     'Modeled and implemented a centralized data warehouse',
     'exp.laps.li3':     'Developed operational reports and dashboards with Grafana',
+    'exp.laps.li4':     'Python MCP server exposing the data warehouse to AI assistants, governed and secured',
 
     'exp.bialr.start':   'Sept. 2020',
     'exp.bialr.end':     'Dec. 2023',
@@ -264,6 +292,7 @@ const translations = {
 
     // Skills
     'skills.title':        '⚡ Skills',
+    'skills.filter':       'Experiences with',
     'skills.level.expert': 'Expert',
     'skills.level.mid':    'Proficient',
     'skills.level.basic':  'Familiar',
@@ -297,6 +326,11 @@ const translations = {
     'projects.etl.title': 'AWS Lambda ETL — Serverless Pipeline Framework',
     'projects.etl.title.main': 'AWS Lambda ETL',
     'projects.etl.title.sub': 'Serverless Pipeline Framework',
+    'projects.mcp.title.main': 'MCP Server',
+    'projects.mcp.title.sub': 'Governed AI access to the data warehouse',
+    'projects.mcp.meta':     'Laps · Apr. – Jun. 2026',
+    'projects.mcp.desc':     'Built a Python MCP server (FastMCP) giving AI assistants governed access to the Laps data warehouse: validated read-only queries (table whitelist, enforced limits and timeouts), automatic masking of personal data, and a full audit log.',
+    'projects.badge.pro':    'Professional',
     'projects.copill.title': 'CoPill — Connected Pillbox',
     'projects.copill.title.main': 'CoPill',
     'projects.copill.title.sub': 'Connected Pillbox',
@@ -314,6 +348,8 @@ const translations = {
     'projects.pinned':        'Pinned',
     'projects.readmore': 'Read more',
     'projects.readless': 'Show less',
+    'projects.showmore': 'Show more projects',
+    'projects.showless': 'Show fewer projects',
     'projects.github':       'View on GitHub',
 
     // Misc
@@ -337,11 +373,13 @@ const translations = {
 
     // Footer & aria
     'footer.backtotop':    'Back to top',
+    'footer.privacy':      'Privacy',
     'projects.github.label': 'View on GitHub',
     'aria.socials':     'Social links',
 
     // Cookie banner
     'cookie.text':   'This site uses cookies to measure its audience.',
+    'cookie.more':   'Learn more',
     'cookie.accept': 'Accept',
     'cookie.refuse': 'Decline',
   }
