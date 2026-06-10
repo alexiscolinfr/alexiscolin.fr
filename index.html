@@ -2,8 +2,8 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <!-- Cookie consent GDPR + GA — must be loaded first, before i18n.js and scroll.js -->
-  <script src="cookie-banner.js?v=6"></script>
+  <!-- Cookie consent GDPR + GA — deferred: runs after the end-of-body scripts (i18n.js, scroll.js) -->
+  <script src="cookie-banner.js?v=7" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alexis Colin — Data Engineer</title>
 
@@ -59,9 +59,10 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/web-app-manifest-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="stylesheet" href="style.css?v=12" />
+  <link rel="stylesheet" href="style.css?v=13" />
   <script>
     (function(){
+      document.documentElement.classList.add('js');
       try {
         var s = localStorage.getItem('theme');
         if (s) document.documentElement.dataset.theme = s;
@@ -215,9 +216,9 @@
       </div>
 
       <div class="about-body" id="aboutBody">
-        <p class="about-text" data-i18n="about.p1"></p>
-        <p class="about-text" data-i18n="about.p2"></p>
-        <p class="about-text" data-i18n="about.p3"></p>
+        <p class="about-text" data-i18n="about.p1">Développeur de données passionné et polyvalent, je conçois et développe des systèmes décisionnels qui aident les entreprises à prendre des décisions stratégiques éclairées. Chez Laps, un réseau de plateformes e-commerce, je contribue activement à bâtir une infrastructure complète pour collecter, transformer et visualiser les données.</p>
+        <p class="about-text" data-i18n="about.p2">Mon parcours m'a permis de développer une expertise complète sur l'ensemble de la chaîne de traitement des données, dans des contextes et secteurs variés. J'ai conçu et automatisé des pipelines de données, modélisé des data warehouses adaptés aux besoins métiers, et réalisé des rapports pertinents avec différents outils de visualisation. Plus récemment, j'ai étendu cette chaîne à l'IA générative, en connectant les données de l'entreprise aux assistants IA de façon gouvernée et sécurisée.</p>
+        <p class="about-text" data-i18n="about.p3">J'apprécie particulièrement de collaborer avec des équipes multidisciplinaires pour transformer les données brutes en insights opérationnels, facilitant ainsi une prise de décision efficace et l'amélioration des performances organisationnelles.</p>
         <div class="about-fade"></div>
       </div>
       <button type="button" class="about-toggle" id="aboutToggle" aria-expanded="false" aria-controls="aboutBody">

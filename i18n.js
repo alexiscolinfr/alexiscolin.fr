@@ -20,7 +20,12 @@ function currentJobDuration(lang) {
 }
 
 // ─── Language state ───────────────────────────────────────────────────────────
-let currentLang = (function(){ try { return localStorage.getItem('lang'); } catch(e) { return null; } })() || 'fr';
+let currentLang = (function(){
+  try {
+    var s = localStorage.getItem('lang');
+    return s === 'fr' || s === 'en' ? s : null;
+  } catch(e) { return null; }
+})() || 'fr';
 
 // ─── Translations ─────────────────────────────────────────────────────────────
 const translations = {

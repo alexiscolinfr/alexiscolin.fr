@@ -163,6 +163,7 @@
   --badge-ochre:  #8f6428;
   --badge-purple: #5b50a0;
   --tag-bg:    rgba(0,0,0,.06);
+  --tag-border: rgba(0,0,0,.1);
   --tag-text:  #4a3f38;
   --radius:    14px;
   --radius-sm: 8px;
@@ -191,6 +192,7 @@
   --badge-ochre:  #d4a35e;
   --badge-purple: #ada3e0;
   --tag-bg:    rgba(255,255,255,.06);
+  --tag-border: rgba(255,255,255,.1);
   --tag-text:  #c5b8ae;
   --shadow:    0 2px 12px rgba(0,0,0,.30);
   --shadow-lg: 0 8px 32px rgba(0,0,0,.50);
@@ -628,7 +630,7 @@ header h1 {
   overflow: hidden;
 }
 
-/* ── Diagonal pattern — always animating, visible only on hover ── */
+/* ── Diagonal pattern — paused by default, animated and visible on hover ── */
 .about-stat::before {
   content: '';
   position: absolute;
@@ -640,11 +642,19 @@ header h1 {
   opacity: 0;
   transition: opacity .5s ease;
   animation: stat-scroll 4s linear infinite;
+  animation-play-state: paused;
   pointer-events: none;
 }
 
 .about-stat:hover::before {
   opacity: 1;
+  animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-stat::before {
+    animation: none;
+  }
 }
 
 @keyframes stat-scroll {
@@ -1265,9 +1275,9 @@ a.company:hover {
   font-weight: 400;
   padding: 2px 8px;
   border-radius: 3px;
-  background: rgba(0,0,0,.07);
-  color: var(--muted);
-  border: 1px solid rgba(0,0,0,.1);
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  border: 1px solid var(--tag-border);
   letter-spacing: 0.03em;
 }
 
@@ -1723,19 +1733,21 @@ footer a:not(.back-to-top):hover {
 /* ═══════════════════════════════════════════
    SCROLL REVEAL
 ═══════════════════════════════════════════ */
-.reveal {
+/* Hidden state only when JS is available (.js set inline in <head>),
+   so content stays visible if scripts fail to load */
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity .5s ease, transform .5s ease;
 }
 
-.reveal.visible {
+.js .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .js .reveal {
     transition: none;
     transform: none;
   }

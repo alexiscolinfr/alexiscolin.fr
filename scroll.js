@@ -623,13 +623,13 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
       });
 
       if (res.ok) {
-        setStatus(translations[currentLang]['contact.success'], 'is-success');
+        setStatus((translations[currentLang] || translations.fr)['contact.success'], 'is-success');
         form.reset();
       } else {
         throw new Error('server');
       }
     } catch {
-      setStatus(translations[currentLang]['contact.error'], 'is-error');
+      setStatus((translations[currentLang] || translations.fr)['contact.error'], 'is-error');
     } finally {
       submit.disabled = false;
       submit.classList.remove('is-loading');

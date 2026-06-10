@@ -29,14 +29,25 @@
   }
 
   function loadGA() {
+    window['ga-disable-' + GA_ID] = false;
     var s = document.createElement('script');
     s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
+    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
     gtag('js', new Date());
     gtag('config', GA_ID);
+  }
+
+  // Stop an already-loaded gtag.js from tracking and recreating cookies,
+  // then remove the existing GA cookies
+  function disableGA() {
+    window['ga-disable-' + GA_ID] = true;
+    if (typeof window.gtag === 'function') {
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+    deleteGACookies();
   }
 
   function hideBanner() {
@@ -64,7 +75,7 @@
       setCookie('accepted'); loadGA(); hideBanner();
     });
     banner.querySelector('#cookie-refuse').addEventListener('click', function () {
-      setCookie('refused'); deleteGACookies(); hideBanner();
+      setCookie('refused'); disableGA(); hideBanner();
     });
     document.body.appendChild(banner);
     if (typeof applyLang === 'function') applyLang(currentLang);
@@ -81,7 +92,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var manage = document.getElementById('cookieManage');
     if (manage) manage.addEventListener('click', function () {
-      deleteGACookies();
+      disableGA();
       document.cookie = COOKIE + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
       showBanner();
     });
