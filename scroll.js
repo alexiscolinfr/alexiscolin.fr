@@ -179,7 +179,6 @@ const roleSkills = {
       { id: 'mssql',   key: true  },
       { id: 'sapbo',   key: true  },
       { id: 'sql',     key: false },
-      { id: 'aws',     key: false },
       { id: 'tableau', key: false },
       { id: 'powerbi', key: false },
       { id: 'git',     key: false },
