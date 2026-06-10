@@ -2,6 +2,10 @@
   "ci": {
     "collect": {
       "staticDistDir": ".",
+      "url": [
+        "http://localhost/index.html",
+        "http://localhost/privacy.html"
+      ],
       "numberOfRuns": 1
     },
     "assert": {
