@@ -196,6 +196,7 @@ const translations = {
     'footer.privacy':      'Confidentialité',
     'projects.github.label': 'Voir sur GitHub',
     'aria.socials':     'Réseaux sociaux',
+    'aria.socials.footer': 'Réseaux sociaux — pied de page',
 
     // Cookie banner
     'cookie.text':   'Ce site utilise des cookies pour mesurer son audience.',
@@ -376,6 +377,7 @@ const translations = {
     'footer.privacy':      'Privacy',
     'projects.github.label': 'View on GitHub',
     'aria.socials':     'Social links',
+    'aria.socials.footer': 'Social links — footer',
 
     // Cookie banner
     'cookie.text':   'This site uses cookies to measure its audience.',
