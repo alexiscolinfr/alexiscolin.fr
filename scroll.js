@@ -61,6 +61,14 @@ const skillsData = [
 
 const categoryDefs = ['dev', 'data', 'orchestration', 'db', 'cloud', 'pm'];
 
+// Skills of a category, ordered by level then tenure — shared by the cards UI
+// and the terminal `skills` command so both always show the same ordering.
+function skillsByCategory(cat) {
+  return skillsData
+    .filter(s => s.category === cat)
+    .sort((a, b) => b.level - a.level || (skillDuration[b.id] || 0) - (skillDuration[a.id] || 0));
+}
+
 function renderSkills() {
   const container = document.querySelector('.skills-cards');
   if (!container) return;
@@ -69,9 +77,7 @@ function renderSkills() {
   const t = translations[lang] || translations.fr;
 
   categoryDefs.forEach(cat => {
-    const items = skillsData
-      .filter(s => s.category === cat)
-      .sort((a, b) => b.level - a.level || (skillDuration[b.id] || 0) - (skillDuration[a.id] || 0));
+    const items = skillsByCategory(cat);
     if (!items.length) return;
 
     const card = document.createElement('div');
@@ -402,19 +408,21 @@ const activeObserver = new IntersectionObserver(
 
 sections.forEach(s => activeObserver.observe(s));
 
+// Active theme: explicit data-theme override, else the OS preference.
+// Shared by the theme toggle and the terminal `theme` command.
+function isDarkTheme() {
+  const t = document.documentElement.dataset.theme;
+  return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+
 // ─── Theme toggle ─────────────────────────────────────────────────────────────
 (function () {
   const html = document.documentElement;
   const btn  = document.getElementById('themeToggle');
 
-  function currentlyDark() {
-    if (html.dataset.theme) return html.dataset.theme === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-
   if (btn) {
     btn.addEventListener('click', () => {
-      const dark = !currentlyDark();
+      const dark = !isDarkTheme();
       html.dataset.theme = dark ? 'dark' : 'light';
       try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch(e) {}
     });
@@ -634,5 +642,440 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
       submit.disabled = false;
       submit.classList.remove('is-loading');
     }
+  });
+})();
+
+// ─── Terminal easter egg + keyboard shortcuts ─────────────────────────────────
+// ` (or the >_ footer button) opens a fake zsh; t / l / 1-6 are page shortcuts.
+(() => {
+  const overlay  = document.getElementById('terminalOverlay');
+  const term     = document.getElementById('terminal');
+  const bar      = document.getElementById('terminalBar');
+  const triggers = document.querySelectorAll('[data-terminal-open]');
+  const dotClose = document.getElementById('termDotClose');
+  const dotMin   = document.getElementById('termDotMin');
+  const dotMax   = document.getElementById('termDotMax');
+  const body     = document.getElementById('terminalBody');
+  const output   = document.getElementById('terminalOutput');
+  const input    = document.getElementById('terminalInput');
+  if (!overlay || !input) return;
+
+  triggers.forEach(b => { b.hidden = false; }); // need JS, so revealed here
+
+  const SECTIONS = ['about', 'experience', 'skills', 'education', 'projects', 'misc', 'contact'];
+  // Number-key targets = the same sections minus 'misc' (no nav entry of its own)
+  const SHORTCUT_SECTIONS = SECTIONS.filter(id => id !== 'misc');
+
+  // Terminal copy — kept local: easter-egg text, not page content.
+  // Everything that IS page content (roles, dates, projects, skills) is pulled
+  // from the i18n `translations` at call time, so it follows the language too.
+  const termText = {
+    fr: {
+      welcome: "Tapez « help » pour la liste des commandes.",
+      help: [
+        'Usage : <commande> [argument]',
+        '',
+        'Commandes',
+        '  whoami              qui suis-je',
+        '  about               présentation',
+        '  experience          parcours professionnel',
+        '  education           formation',
+        '  skills              compétences techniques',
+        '  projects            projets',
+        '  contact             email, téléphone, réseaux',
+        '  open <réseau>       ouvrir un profil (github, linkedin…)',
+        '  cv [fr|en]          télécharger le CV',
+        '  ls                  lister les sections',
+        '  cd <section>        aller à une section',
+        '  lang [fr|en]        changer la langue',
+        '  theme [dark|light]  thème clair / sombre',
+        '  clear               effacer l\'écran',
+        '  exit                quitter',
+      ],
+      bio:       'Polyvalent sur toute la chaîne de données : ingestion, transformation, visualisation et IA.',
+      lblPhone:  'tél.',
+      sections:  'Sections :',
+      notFound:  'zsh: commande introuvable :',
+      hint:      "tapez « help »",
+      cvOpen:    'Ouverture du CV',
+      noSection: 'section inconnue :',
+      opening:   'Ouverture de',
+      noNet:     'réseau inconnu :',
+      netHint:   'réseaux : github · linkedin · instagram · threads · x',
+      langSet:   'Langue',
+      themeSet:  'Thème',
+      lastLogin: 'Dernière connexion :',
+    },
+    en: {
+      welcome: "Type 'help' to list the commands.",
+      help: [
+        'Usage: <command> [argument]',
+        '',
+        'Commands',
+        '  whoami              who am I',
+        '  about               short bio',
+        '  experience          work history',
+        '  education           education',
+        '  skills              technical skills',
+        '  projects            projects',
+        '  contact             email, phone, socials',
+        '  open <network>      open a profile (github, linkedin…)',
+        '  cv [fr|en]          download the resume',
+        '  ls                  list sections',
+        '  cd <section>        jump to a section',
+        '  lang [fr|en]        switch language',
+        '  theme [dark|light]  light / dark theme',
+        '  clear               clear the screen',
+        '  exit                quit',
+      ],
+      bio:       'Versatile across the whole data chain: ingestion, transformation, visualization and AI.',
+      lblPhone:  'phone',
+      sections:  'Sections:',
+      notFound:  'zsh: command not found:',
+      hint:      "type 'help'",
+      cvOpen:    'Opening resume',
+      noSection: 'unknown section:',
+      opening:   'Opening',
+      noNet:     'unknown network:',
+      netHint:   'networks: github · linkedin · instagram · threads · x',
+      langSet:   'Language',
+      themeSet:  'Theme',
+      lastLogin: 'Last login:',
+    }
+  };
+
+  // Page data referenced by i18n keys → stays bilingual automatically
+  const EXPERIENCE = [
+    { role: 'exp.laps.role',   org: 'Laps',              start: 'exp.laps.start',   end: 'exp.laps.end' },
+    { role: 'exp.bialr1.role', org: 'BIAL-R → Bial-S',   start: 'exp.bialr1.start', end: 'exp.bialr1.end' },
+    { role: 'exp.bialr2.role', org: 'BIAL-R → Clariane', start: 'exp.bialr2.start', end: 'exp.bialr2.end' },
+    { role: 'exp.bialr3.role', org: 'BIAL-R → APRR',     start: 'exp.bialr3.start', end: 'exp.bialr3.end' },
+    { role: 'exp.hyatt.role',  org: 'Park Hyatt Paris',  start: 'exp.hyatt.start',  end: 'exp.hyatt.end' },
+  ];
+  const EDUCATION = [
+    { deg: 'edu.miage.degree', dates: 'edu.miage.dates', org: 'UCBL' },
+    { deg: 'edu.uqac.degree',  dates: 'edu.uqac.dates',  org: 'UQAC' },
+    { deg: 'edu.dut.degree',   dates: 'edu.dut.dates',   org: 'UVSQ' },
+  ];
+  const PROJECTS = [
+    { name: 'projects.mcp.title.main',    sub: 'projects.mcp.title.sub' },
+    { name: 'projects.etl.title.main',    sub: 'projects.etl.title.sub' },
+    { name: 'projects.copill.title.main', sub: 'projects.copill.title.sub' },
+    { name: 'projects.swarm.title.main',  sub: 'projects.swarm.title.sub' },
+  ];
+  const SOCIALS = {
+    github:    'https://github.com/alexiscolinfr',
+    linkedin:  'https://www.linkedin.com/in/alexiscolinfr',
+    instagram: 'https://www.instagram.com/alexiscolinfr',
+    threads:   'https://www.threads.net/@alexiscolinfr',
+    x:         'https://x.com/alexiscolinfr',
+  };
+
+  const tt = () => termText[currentLang] || termText.fr;
+  const t  = () => translations[currentLang] || translations.fr;
+
+  let printQueue = [];
+  let printTimer = null;
+
+  function clearQueue() {
+    printQueue.length = 0;
+    if (printTimer) { clearTimeout(printTimer); printTimer = null; }
+  }
+
+  function drainQueue() {
+    if (!printQueue.length) { printTimer = null; return; }
+    const { line, cls } = printQueue.shift();
+    const div = document.createElement('div');
+    div.className = 'terminal__line' + (cls ? ` ${cls}` : '');
+    div.textContent = line === '' ? ' ' : line;
+    output.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+    printTimer = setTimeout(drainQueue, 15);
+  }
+
+  function print(lines, cls) {
+    (Array.isArray(lines) ? lines : [lines]).forEach(line => {
+      printQueue.push({ line, cls });
+    });
+    if (!printTimer) drainQueue();
+  }
+
+  // Echo a typed command the way a real shell does: coloured prompt prefix,
+  // command itself in the default text colour (not the whole line tinted).
+  function printCommand(raw) {
+    const div = document.createElement('div');
+    div.className = 'terminal__line';
+    const ps = document.createElement('span');
+    ps.className = 'terminal__ps1';
+    ps.innerHTML = '<span class="t-arrow">➜</span> <span class="t-path">~</span>';
+    div.append(ps, document.createTextNode(' ' + raw));
+    output.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function lastLoginLine() {
+    const d = new Date();
+    // Intl gives locale-correct weekday/month names and ordering for free,
+    // so fr (dd month) and en (month dd) both come out right with no tables.
+    const datePart = new Intl.DateTimeFormat(currentLang, { weekday: 'short', day: '2-digit', month: 'short' }).format(d);
+    const time = new Intl.DateTimeFormat(currentLang, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(d);
+    return `${tt().lastLogin} ${datePart} ${time}`;
+  }
+
+  function gotoSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  }
+
+  const commands = {
+    help() { print(tt().help); },
+
+    whoami() {
+      print([
+        `Alexis Colin — ${t()['hero.role']}`,
+        `📍 ${t()['hero.location']} 🇨🇦`,
+        t()['status.open'],
+        '',
+        tt().bio,
+      ]);
+    },
+
+    about() {
+      print('');
+      print(t()['about.p1']);
+    },
+
+    experience() {
+      EXPERIENCE.forEach(e => {
+        print(`  ${t()[e.role]}`);
+        print(`    ${e.org} · ${t()[e.start]} – ${t()[e.end]}`, 'terminal__line--muted');
+      });
+    },
+
+    education() {
+      EDUCATION.forEach(e => {
+        print(`  ${t()[e.deg]}`);
+        print(`    ${e.org} · ${t()[e.dates]}`, 'terminal__line--muted');
+      });
+    },
+
+    skills() {
+      const dots = lvl => '●'.repeat(lvl) + '○'.repeat(3 - lvl);
+      categoryDefs.forEach(cat => {
+        const items = skillsByCategory(cat);
+        if (!items.length) return;
+        print(`  ${t()['skills.' + cat]}`);
+        items.forEach(s => print(`    ${dots(s.level)}  ${s.name}`, 'terminal__line--muted'));
+      });
+    },
+
+    projects() {
+      PROJECTS.forEach(p => {
+        print(`  ${t()[p.name]}`);
+        print(`    ${t()[p.sub]}`, 'terminal__line--muted');
+      });
+    },
+
+    contact() {
+      print([
+        `email     contact@alexiscolin.fr`,
+        `${tt().lblPhone.padEnd(9)} +1 (438) 543-6098`,
+        `github    github.com/alexiscolinfr`,
+        `linkedin  linkedin.com/in/alexiscolinfr`,
+      ]);
+    },
+
+    open(args) {
+      const key = (args[0] || '').toLowerCase();
+      if (SOCIALS[key]) {
+        print(`${tt().opening} ${key}…`);
+        window.open(SOCIALS[key], '_blank', 'noopener');
+      } else {
+        print(`open: ${tt().noNet} ${args[0] || ''}`, 'terminal__line--error');
+        print(tt().netHint, 'terminal__line--muted');
+      }
+    },
+
+    cv(args) {
+      const lang = args[0] === 'en' || args[0] === 'fr' ? args[0] : currentLang;
+      print(`${tt().cvOpen} (${lang})…`);
+      window.open(`assets/cv-${lang}.pdf`, '_blank', 'noopener');
+    },
+
+    ls() {
+      print(tt().sections);
+      print('  ' + SECTIONS.join('  '));
+    },
+
+    cd(args) {
+      const arg = args[0];
+      if (!arg || arg === '~' || arg === '/') { window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' }); return; }
+      const id = arg.replace(/^[#/]/, '');
+      if (SECTIONS.includes(id)) gotoSection(id);
+      else print(`cd: ${tt().noSection} ${arg}`, 'terminal__line--error');
+    },
+
+    lang(args) {
+      const next = args[0] === 'fr' || args[0] === 'en' ? args[0] : (currentLang === 'fr' ? 'en' : 'fr');
+      if (next !== currentLang) document.getElementById('langToggle').click();
+      // Label in the target language: langToggle defers currentLang by ~70ms,
+      // so tt() would still resolve to the previous language here.
+      print(`${(termText[next] || termText.fr).langSet} → ${next}`);
+    },
+
+    theme(args) {
+      const want = (args[0] || '').toLowerCase();
+      if (want === 'dark' || want === 'light') {
+        if ((want === 'dark') !== isDarkTheme()) document.getElementById('themeToggle').click();
+      } else {
+        document.getElementById('themeToggle').click();
+      }
+      print(`${tt().themeSet} → ${isDarkTheme() ? 'dark' : 'light'}`);
+    },
+
+    clear() { clearQueue(); output.innerHTML = ''; },
+    exit() { closeTerminal(); },
+  };
+
+  // Short aliases for the two longest command names
+  commands.exp = commands.experience;
+  commands.edu = commands.education;
+
+  let greeted = false;
+  let lastFocus = null;
+  const history = [];
+  let histIdx = -1;
+
+  let onCloseEnd = null;
+
+  function openTerminal() {
+    // Cancel any in-flight close so reopening mid-animation can't re-hide us
+    if (onCloseEnd) { term.removeEventListener('animationend', onCloseEnd); onCloseEnd = null; }
+    overlay.classList.remove('terminal-overlay--closing');
+    // Only capture the trigger on a real open — not when restoring a minimized
+    // window (focus would be <body>, losing the original return target)
+    if (overlay.hidden) lastFocus = document.activeElement;
+    overlay.hidden = false;
+    overlay.classList.remove('terminal-overlay--min');
+    // Each fresh open (after a close) is a new session: login banner + welcome
+    if (!greeted) {
+      greeted = true;
+      print(lastLoginLine(), 'terminal__line--muted');
+      print(tt().welcome, 'terminal__line--muted');
+    }
+    input.focus();
+  }
+
+  function finishClose(focus) {
+    overlay.classList.remove('terminal-overlay--closing');
+    overlay.classList.remove('terminal-overlay--min');
+    term.classList.remove('terminal--max');
+    overlay.hidden = true;
+    clearQueue();
+    output.innerHTML = '';
+    greeted = false;
+    if (focus && focus.focus) focus.focus({ preventScroll: true });
+  }
+
+  function closeTerminal() {
+    if (overlay.hidden) return;
+    const focus = lastFocus;
+    // No close animation under reduced motion → animationend never fires, so
+    // hide immediately rather than waiting for an event that won't come.
+    if (prefersReducedMotion) { finishClose(focus); return; }
+    overlay.classList.add('terminal-overlay--closing');
+    onCloseEnd = function () { onCloseEnd = null; finishClose(focus); };
+    term.addEventListener('animationend', onCloseEnd, { once: true });
+  }
+
+  function minimizeTerminal() {
+    overlay.classList.add('terminal-overlay--min');
+    input.blur();
+  }
+
+  function restoreTerminal() {
+    overlay.classList.remove('terminal-overlay--min');
+    input.focus();
+  }
+
+  const isMinimized = () => overlay.classList.contains('terminal-overlay--min');
+
+  function run(raw) {
+    const line = raw.trim();
+    printCommand(raw);
+    if (!line) return;
+    const parts = line.split(/\s+/);
+    const name = parts[0].toLowerCase();
+    const args = parts.slice(1);
+    const cmd = commands[name];
+    if (cmd) cmd(args);
+    else print(`${tt().notFound} ${name} — ${tt().hint}`, 'terminal__line--error');
+  }
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      // preventDefault: 'exit' moves focus to the >_ trigger; without it the
+      // browser delivers this same Enter to the trigger → click → reopen
+      e.preventDefault();
+      const value = input.value;
+      input.value = '';
+      if (value.trim()) { history.push(value); }
+      histIdx = history.length;
+      run(value);
+    } else if (e.key === 'ArrowUp') {
+      if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown') {
+      if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+      else { histIdx = history.length; input.value = ''; }
+      e.preventDefault();
+    }
+  });
+
+  // Clicking anywhere in the terminal refocuses the input (like a real one)
+  term.addEventListener('click', e => {
+    if (e.target.closest('.terminal__dot')) return;
+    if (isMinimized()) { restoreTerminal(); return; }
+    if (!window.getSelection().toString()) input.focus();
+  });
+
+  // Click on the dimmed backdrop closes (not when minimized: backdrop is gone)
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeTerminal();
+  });
+
+  triggers.forEach(b => b.addEventListener('click', openTerminal));
+  dotClose.addEventListener('click', closeTerminal);
+  dotMin.addEventListener('click', () => { isMinimized() ? restoreTerminal() : minimizeTerminal(); });
+  dotMax.addEventListener('click', () => {
+    overlay.classList.remove('terminal-overlay--min');
+    term.classList.toggle('terminal--max');
+    input.focus();
+  });
+
+  // ── Global keyboard shortcuts ──
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'Escape') { if (!overlay.hidden) closeTerminal(); return; }
+    const el = e.target;
+    if (el.closest && (el.closest('input, textarea, select, [contenteditable]'))) return;
+    // Modal is up (open, not minimized): swallow page shortcuts so a stray
+    // 1-6 / t / l can't scroll or toggle the page behind the backdrop.
+    if (!overlay.hidden && !isMinimized()) return;
+
+    // e.code 'Backquote' = the physical key left of 1, whatever the layout
+    // (on CA-FR / FR keyboards the ` character itself is a dead key);
+    // '$' as a fallback — a dedicated key on CA-FR, and shell-themed
+    if (e.code === 'Backquote' || e.key === '`' || e.key === '~' || e.key === '$') {
+      overlay.hidden || isMinimized() ? openTerminal() : closeTerminal();
+    } else if (e.key === 't') {
+      document.getElementById('themeToggle').click();
+    } else if (e.key === 'l') {
+      document.getElementById('langToggle').click();
+    } else if (e.key >= '1' && e.key <= String(SHORTCUT_SECTIONS.length)) {
+      gotoSection(SHORTCUT_SECTIONS[Number(e.key) - 1]);
+    } else {
+      return;
+    }
+    e.preventDefault();
   });
 })();

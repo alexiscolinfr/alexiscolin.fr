@@ -202,6 +202,12 @@ const translations = {
     'projects.github.label': 'Voir sur GitHub',
     'aria.socials':     'Réseaux sociaux',
     'aria.socials.footer': 'Réseaux sociaux — pied de page',
+    'aria.terminal':       'Ouvrir le terminal',
+    'aria.terminal.hint':  'Ouvrir le terminal — touche $ ou `',
+    'aria.terminal.close': 'Fermer le terminal',
+    'aria.terminal.min':   'Réduire le terminal',
+    'aria.terminal.max':   'Agrandir le terminal',
+    'aria.terminal.input': 'Commande',
 
     // Cookie banner
     'cookie.text':   'Ce site utilise des cookies pour mesurer son audience.',
@@ -383,6 +389,12 @@ const translations = {
     'projects.github.label': 'View on GitHub',
     'aria.socials':     'Social links',
     'aria.socials.footer': 'Social links — footer',
+    'aria.terminal':       'Open the terminal',
+    'aria.terminal.hint':  'Open the terminal — press $ or `',
+    'aria.terminal.close': 'Close the terminal',
+    'aria.terminal.min':   'Minimize the terminal',
+    'aria.terminal.max':   'Maximize the terminal',
+    'aria.terminal.input': 'Command',
 
     // Cookie banner
     'cookie.text':   'This site uses cookies to measure its audience.',
@@ -420,6 +432,12 @@ function applyLang(lang) {
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     const key = el.dataset.i18nPlaceholder;
     if (t[key] !== undefined) el.setAttribute('placeholder', t[key]);
+  });
+
+  // title attributes
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    const key = el.dataset.i18nTitle;
+    if (t[key] !== undefined) el.setAttribute('title', t[key]);
   });
 
   // Toggles — restore correct label based on expanded state

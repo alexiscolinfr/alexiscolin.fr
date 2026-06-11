@@ -59,7 +59,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/web-app-manifest-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="stylesheet" href="style.css?v=13" />
+  <link rel="stylesheet" href="style.css?v=19" />
   <script>
     (function(){
       document.documentElement.classList.add('js');
@@ -698,15 +698,40 @@
       </div>
       <div class="footer-bottom">
         <span>© <span id="footerYear"></span> Alexis Colin · <a href="privacy.html" data-i18n="footer.privacy">Confidentialité</a></span>
-        <a href="#top" class="back-to-top" aria-label="Retour en haut" data-i18n-aria="footer.backtotop">↑</a>
+        <span class="footer-bottom__actions">
+          <button type="button" class="terminal-cue" data-terminal-open aria-label="Ouvrir le terminal" title="Ouvrir le terminal" data-i18n-aria="aria.terminal" data-i18n-title="aria.terminal.hint" hidden><span class="terminal-cue__prompt" aria-hidden="true">&gt;</span><span class="terminal-cue__cursor" aria-hidden="true"></span></button>
+          <a href="#top" class="back-to-top" aria-label="Retour en haut" data-i18n-aria="footer.backtotop">↑</a>
+        </span>
       </div>
     </div>
   </footer>
 
+  <!-- ═══════════ TERMINAL (easter egg — $ / ` or the >_ buttons) ═══════════ -->
+  <div class="terminal-overlay" id="terminalOverlay" hidden>
+    <div class="terminal" id="terminal" role="dialog" aria-modal="true" aria-label="Terminal">
+      <div class="terminal__bar" id="terminalBar">
+        <button type="button" class="terminal__dot terminal__dot--close" id="termDotClose" aria-label="Fermer le terminal" data-i18n-aria="aria.terminal.close"></button>
+        <button type="button" class="terminal__dot terminal__dot--min" id="termDotMin" aria-label="Réduire le terminal" data-i18n-aria="aria.terminal.min"></button>
+        <button type="button" class="terminal__dot terminal__dot--max" id="termDotMax" aria-label="Agrandir le terminal" data-i18n-aria="aria.terminal.max"></button>
+        <span class="terminal__title">visitor@alexiscolin.fr</span>
+        <span class="terminal__min-hint" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+        </span>
+      </div>
+      <div class="terminal__body" id="terminalBody">
+        <div id="terminalOutput"></div>
+        <div class="terminal__prompt">
+          <span class="terminal__ps1" aria-hidden="true"><span class="t-arrow">➜</span> <span class="t-path">~</span></span>
+          <input type="text" id="terminalInput" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Commande" data-i18n-aria="aria.terminal.input" />
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Intentional load order: i18n.js must come before scroll.js
        (scroll.js depends on `translations` and `currentLang` defined in i18n.js)
        Do not add async/defer to these two scripts. -->
-  <script src="i18n.js?v=11"></script>
-  <script src="scroll.js?v=8"></script>
+  <script src="i18n.js?v=14"></script>
+  <script src="scroll.js?v=21"></script>
 </body>
 </html>
