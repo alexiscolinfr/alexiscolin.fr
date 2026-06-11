@@ -1833,7 +1833,11 @@ footer a:not(.back-to-top):hover {
   padding: 9px 12px;
   background: var(--bg-alt);
   border-bottom: 1px solid var(--border);
+  cursor: grab;
+  user-select: none;
 }
+
+.terminal--dragging .terminal__bar { cursor: grabbing; }
 
 /* macOS window buttons — real controls: close / minimize / zoom */
 .terminal__dot {

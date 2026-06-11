@@ -813,10 +813,17 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
     body.scrollTop = body.scrollHeight;
   }
 
+  // Read the previous visit timestamp from localStorage, then stamp the current
+  // one for next time. Falls back gracefully when storage is unavailable.
+  let prevVisit = null;
+  try {
+    const raw = localStorage.getItem('lastVisit');
+    if (raw) prevVisit = new Date(Number(raw));
+    localStorage.setItem('lastVisit', Date.now());
+  } catch(e) {}
+
   function lastLoginLine() {
-    const d = new Date();
-    // Intl gives locale-correct weekday/month names and ordering for free,
-    // so fr (dd month) and en (month dd) both come out right with no tables.
+    const d = prevVisit || new Date();
     const datePart = new Intl.DateTimeFormat(currentLang, { weekday: 'short', day: '2-digit', month: 'short' }).format(d);
     const time = new Intl.DateTimeFormat(currentLang, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(d);
     return `${tt().lastLogin} ${datePart} ${time}`;
@@ -953,7 +960,7 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
     overlay.classList.remove('terminal-overlay--closing');
     // Only capture the trigger on a real open — not when restoring a minimized
     // window (focus would be <body>, losing the original return target)
-    if (overlay.hidden) lastFocus = document.activeElement;
+    if (overlay.hidden) { lastFocus = document.activeElement; resetPosition(); }
     overlay.hidden = false;
     overlay.classList.remove('terminal-overlay--min');
     // Each fresh open (after a close) is a new session: login banner + welcome
@@ -969,6 +976,7 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
     overlay.classList.remove('terminal-overlay--closing');
     overlay.classList.remove('terminal-overlay--min');
     term.classList.remove('terminal--max');
+    resetPosition();
     overlay.hidden = true;
     clearQueue();
     output.innerHTML = '';
@@ -988,11 +996,13 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
   }
 
   function minimizeTerminal() {
+    resetPosition();
     overlay.classList.add('terminal-overlay--min');
     input.blur();
   }
 
   function restoreTerminal() {
+    resetPosition();
     overlay.classList.remove('terminal-overlay--min');
     input.focus();
   }
@@ -1051,6 +1061,66 @@ document.querySelectorAll('.project-readmore').forEach(btn => {
     term.classList.toggle('terminal--max');
     input.focus();
   });
+
+  // ── Drag to move ──
+  let dragOffX = 0, dragOffY = 0, dragging = false;
+
+  function resetPosition() {
+    term.style.position = '';
+    term.style.left = '';
+    term.style.top = '';
+  }
+
+  function onDragMove(e) {
+    if (!dragging) return;
+    e.preventDefault();
+    const cx = e.touches ? e.touches[0].clientX : e.clientX;
+    const cy = e.touches ? e.touches[0].clientY : e.clientY;
+    const x = Math.max(0, Math.min(cx - dragOffX, window.innerWidth  - term.offsetWidth));
+    const y = Math.max(0, Math.min(cy - dragOffY, window.innerHeight - term.offsetHeight));
+    term.style.left = x + 'px';
+    term.style.top  = y + 'px';
+  }
+
+  function onDragEnd() {
+    if (!dragging) return;
+    dragging = false;
+    term.classList.remove('terminal--dragging');
+    document.removeEventListener('mousemove', onDragMove);
+    document.removeEventListener('mouseup',   onDragEnd);
+    document.removeEventListener('touchmove', onDragMove);
+    document.removeEventListener('touchend',  onDragEnd);
+  }
+
+  function startDrag(clientX, clientY, isTouchEvent) {
+    const rect = term.getBoundingClientRect();
+    dragOffX = clientX - rect.left;
+    dragOffY = clientY - rect.top;
+    // Anchor at current position before detaching from flex centering
+    term.style.position = 'fixed';
+    term.style.left = rect.left + 'px';
+    term.style.top  = rect.top  + 'px';
+    dragging = true;
+    term.classList.add('terminal--dragging');
+    if (isTouchEvent) {
+      document.addEventListener('touchmove', onDragMove, { passive: false });
+      document.addEventListener('touchend',  onDragEnd);
+    } else {
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup',   onDragEnd);
+    }
+  }
+
+  bar.addEventListener('mousedown', e => {
+    if (e.target.closest('.terminal__dot') || isMinimized()) return;
+    startDrag(e.clientX, e.clientY, false);
+    e.preventDefault();
+  });
+
+  bar.addEventListener('touchstart', e => {
+    if (e.target.closest('.terminal__dot') || isMinimized()) return;
+    startDrag(e.touches[0].clientX, e.touches[0].clientY, true);
+  }, { passive: true });
 
   // ── Global keyboard shortcuts ──
   document.addEventListener('keydown', e => {
