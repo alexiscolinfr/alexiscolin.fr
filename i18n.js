@@ -42,15 +42,15 @@ const translations = {
     'status.unavailable': 'Non disponible pour le moment',
 
     // Nav (same sections as *.title, without the emoji)
-    'nav.about':    '👤 À propos',
-    'nav.exp':      '💼 Expérience',
-    'nav.skills':   '⚡ Compétences',
-    'nav.edu':      '🎓 Formation',
-    'nav.projects': '🚀 Projets',
-    'nav.contact':  '✉️ Contact',
+    'nav.about':    'À propos',
+    'nav.exp':      'Expérience',
+    'nav.skills':   'Compétences',
+    'nav.edu':      'Formation',
+    'nav.projects': 'Projets',
+    'nav.contact':  'Contact',
 
     // About
-    'about.title':    '👤 À propos',
+    'about.title':    'À propos',
     'stat.exp':       'ans d\'expérience',
     'stat.sectors':   'secteurs d\'activité',
     'stat.pipelines': 'pipelines déployés',
@@ -60,7 +60,7 @@ const translations = {
     'about.p2': 'Mon parcours couvre l\'ensemble de la chaîne de traitement des données, dans des secteurs variés : pipelines automatisés, data warehouses modélisés selon les besoins métiers, et rapports stratégiques et opérationnels construits avec différents outils de visualisation — en collaboration étroite avec les équipes métiers pour transformer les données brutes en leviers de décision.',
 
     // Experience
-    'exp.title':        '💼 Expérience',
+    'exp.title':        'Expérience',
     'exp.client.prep':    'chez',
     'contract.permanent': 'CDI',
     'contract.alternance':'Alternance',
@@ -76,7 +76,7 @@ const translations = {
     'exp.laps.li1':     'Conception, déploiement et automatisation de flux de données en Python sur AWS',
     'exp.laps.li2':     'Modélisation et implémentation d\'un entrepôt de données centralisé',
     'exp.laps.li3':     'Développement de rapports et tableaux de bord opérationnels avec Grafana',
-    'exp.laps.li4':     'Serveur MCP en Python exposant l\'entrepôt aux assistants IA, gouverné et sécurisé',
+    'exp.laps.li4':     'Développement d\'un serveur MCP en Python connectant l\'entrepôt de données aux assistants IA, avec gouvernance SQL et masquage des données sensibles',
 
     'exp.bialr.start':   'Sept. 2020',
     'exp.bialr.end':     'Déc. 2023',
@@ -118,7 +118,7 @@ const translations = {
     'exp.hyatt.li3':     'Contribution à la mise en place et au suivi des mesures de cybersécurité',
 
     // Skills
-    'skills.title':        '⚡ Compétences',
+    'skills.title':        'Compétences',
     'skills.filter':       'Expériences avec',
     'skills.level.expert': 'Expertise',
     'skills.level.mid':    'Maîtrise',
@@ -136,7 +136,7 @@ const translations = {
     'lang.english.level':  'Courant',
 
     // Education
-    'edu.title':        '🎓 Formation',
+    'edu.title':        'Formation',
     'edu.miage.degree': 'Master Méthodes Informatiques Appliquées à la Gestion des Entreprises - MIAGE',
     'edu.miage.dates':  'Sept. 2019 – Juin 2021',
     'edu.miage.desc':   'Parcours Systèmes d\'Information de Gestion de Santé.',
@@ -147,10 +147,9 @@ const translations = {
     'edu.dut.dates':    'Sept. 2016 – Juin 2018',
 
     // Projects
-    'projects.title':        '🚀 Projets',
+    'projects.title':        'Projets',
     'projects.etl.meta':     'Juin - Sept. 2025 · 4 mois',
     'projects.etl.desc':     'Développement d\'un framework ETL serverless sur AWS Lambda, permettant la création de pipelines modulaires, évolutifs et économiques pour l\'automatisation des flux de données.',
-    'projects.etl.title': 'AWS Lambda ETL — Framework de pipelines serverless',
     'projects.etl.title.main': 'AWS Lambda ETL',
     'projects.etl.title.sub': 'Framework de pipelines serverless',
     'projects.mcp.title.main': 'MCP Server',
@@ -158,12 +157,10 @@ const translations = {
     'projects.mcp.meta':     'Laps · Avr. – Juin 2026 · 3 mois',
     'projects.mcp.desc':     'Développement d\'un serveur MCP en Python (FastMCP) donnant aux assistants IA un accès gouverné à l\'entrepôt de données de Laps : requêtes en lecture seule validées (liste blanche de tables, limites et délais imposés), masquage automatique des données personnelles et journal d\'audit complet.',
     'projects.badge.pro':    'Professionnel',
-    'projects.copill.title': 'CoPill — Pilulier connecté',
     'projects.copill.title.main': 'CoPill',
     'projects.copill.title.sub': 'Pilulier connecté',
     'projects.copill.desc1': 'Projet de fin d\'études réalisé en équipe pour transformer un pilulier traditionnel en une solution connectée visant à améliorer l\'adhésion aux traitements (personnes âgées, patients, sportifs). Le projet couvrait l\'ensemble du cycle produit (discovery, spécifications, prototypage, tests utilisateurs et validation) ainsi que la gestion de projet (planification et suivi des itérations).',
     'projects.copill.desc2': 'Sur le plan technique, le prototype embarqué a été développé en Python sur une Raspberry Pi avec modules (LED, capteurs, écran, buzzer) et accompagné d\'une application Android en Java pour le pilotage et le suivi.',
-    'projects.swarm.title':  'Swarm Debugging — Migration d\'API vers GraphQL',
     'projects.swarm.title.main': 'Swarm Debugging',
     'projects.swarm.title.sub': 'Migration d\'API vers GraphQL',
     'projects.swarm.desc1':  'Le projet Swarm Debugging consiste à développer un plug-in sur l\'IDE Eclipse qui facilite le débogage collaboratif des développeurs via le crowdsourcing.',
@@ -180,14 +177,14 @@ const translations = {
     'projects.github':       'Voir sur GitHub',
 
     // Misc
-    'misc.title':        '🎯 Divers',
+    'misc.title':        'Divers',
     'misc.tt.title':     'Tennis de Table',
     'misc.tt.desc':      'Activité pratiquée pendant plus de 10 ans en club.',
     'misc.travel.title': 'Voyages',
     'misc.travel.desc':  'Déjà 17 pays explorés, et bien d\'autres à venir.',
 
     // Contact
-    'contact.title':               '✉️ Contact',
+    'contact.title':               'Contact',
     'contact.name.label':          'Nom',
     'contact.name.placeholder':    'Votre nom',
     'contact.email.label':         'Email',
@@ -201,6 +198,7 @@ const translations = {
     // Footer & aria
     'footer.backtotop':    'Retour en haut',
     'footer.privacy':      'Confidentialité',
+    'a11y.skip':           'Aller au contenu',
     'projects.github.label': 'Voir sur GitHub',
     'aria.socials':     'Réseaux sociaux',
     'aria.socials.footer': 'Réseaux sociaux — pied de page',
@@ -228,15 +226,15 @@ const translations = {
     'status.unavailable': 'Not available at the moment',
 
     // Nav (same sections as *.title, without the emoji)
-    'nav.about':    '👤 About',
-    'nav.exp':      '💼 Experience',
-    'nav.skills':   '⚡ Skills',
-    'nav.edu':      '🎓 Education',
-    'nav.projects': '🚀 Projects',
-    'nav.contact':  '✉️ Contact',
+    'nav.about':    'About',
+    'nav.exp':      'Experience',
+    'nav.skills':   'Skills',
+    'nav.edu':      'Education',
+    'nav.projects': 'Projects',
+    'nav.contact':  'Contact',
 
     // About
-    'about.title':    '👤 About',
+    'about.title':    'About',
     'stat.exp':       'years of experience',
     'stat.sectors':   'industry sectors',
     'stat.pipelines': 'deployed pipelines',
@@ -246,7 +244,7 @@ const translations = {
     'about.p2': 'My career spans the entire data processing chain, across a range of industries: automated pipelines, data warehouses modeled around business needs, and strategic and operational reporting built with various visualization tools — working closely with business teams to turn raw data into decision-making levers.',
 
     // Experience
-    'exp.title':        '💼 Experience',
+    'exp.title':        'Experience',
     'exp.client.prep':    'for',
     'contract.permanent': 'Full-time',
     'contract.alternance':'Apprenticeship',
@@ -262,7 +260,7 @@ const translations = {
     'exp.laps.li1':     'Designed, deployed, and automated data pipelines in Python on AWS',
     'exp.laps.li2':     'Modeled and implemented a centralized data warehouse',
     'exp.laps.li3':     'Developed operational reports and dashboards with Grafana',
-    'exp.laps.li4':     'Python MCP server exposing the data warehouse to AI assistants, governed and secured',
+    'exp.laps.li4':     'Built a Python MCP server connecting the data warehouse to AI assistants, with SQL governance and sensitive-data masking',
 
     'exp.bialr.start':   'Sept. 2020',
     'exp.bialr.end':     'Dec. 2023',
@@ -304,7 +302,7 @@ const translations = {
     'exp.hyatt.li3':     'Assisted in implementing and monitoring cybersecurity measures',
 
     // Skills
-    'skills.title':        '⚡ Skills',
+    'skills.title':        'Skills',
     'skills.filter':       'Experiences with',
     'skills.level.expert': 'Expert',
     'skills.level.mid':    'Proficient',
@@ -322,7 +320,7 @@ const translations = {
     'lang.english.level':  'Fluent',
 
     // Education
-    'edu.title':        '🎓 Education',
+    'edu.title':        'Education',
     'edu.miage.degree': "Master's degree in Computer Science Applied to Business Management - MIAGE",
     'edu.miage.dates':  'Sep. 2019 – Jun. 2021',
     'edu.miage.desc':   'Specialization in Health Management Information Systems.',
@@ -333,10 +331,9 @@ const translations = {
     'edu.dut.dates':    'Sep. 2016 – Jun. 2018',
 
     // Projects
-    'projects.title':        '🚀 Projects',
+    'projects.title':        'Projects',
     'projects.etl.meta':     'Jun. - Sep. 2025 · 4 mos',
     'projects.etl.desc':     'Developed a serverless ETL framework on AWS Lambda, enabling the creation of modular, scalable, and cost-effective pipelines for automated data workflows.',
-    'projects.etl.title': 'AWS Lambda ETL — Serverless Pipeline Framework',
     'projects.etl.title.main': 'AWS Lambda ETL',
     'projects.etl.title.sub': 'Serverless Pipeline Framework',
     'projects.mcp.title.main': 'MCP Server',
@@ -344,12 +341,10 @@ const translations = {
     'projects.mcp.meta':     'Laps · Apr. – Jun. 2026 · 3 mos',
     'projects.mcp.desc':     'Built a Python MCP server (FastMCP) giving AI assistants governed access to the Laps data warehouse: validated read-only queries (table whitelist, enforced limits and timeouts), automatic masking of personal data, and a full audit log.',
     'projects.badge.pro':    'Professional',
-    'projects.copill.title': 'CoPill — Connected Pillbox',
     'projects.copill.title.main': 'CoPill',
     'projects.copill.title.sub': 'Connected Pillbox',
     'projects.copill.desc1': 'Final-year team project to transform a traditional pillbox into a connected solution aimed at improving treatment adherence for seniors, patients, and athletes. The project covered the entire product lifecycle (discovery, specifications, prototyping, user testing, and validation) as well as project management (planning and iteration tracking).',
     'projects.copill.desc2': 'Technically, the embedded prototype was developed in Python on a Raspberry Pi with modules (LEDs, sensors, display, buzzer) and complemented by an Android application in Java for monitoring and control.',
-    'projects.swarm.title':  'Swarm Debugging — API Migration to GraphQL',
     'projects.swarm.title.main': 'Swarm Debugging',
     'projects.swarm.title.sub': 'API Migration to GraphQL',
     'projects.swarm.desc1':  'Swarm Debugging is a project developing an Eclipse IDE plugin to facilitate collaborative debugging among developers via crowdsourcing.',
@@ -366,14 +361,14 @@ const translations = {
     'projects.github':       'View on GitHub',
 
     // Misc
-    'misc.title':        '🎯 Interests',
+    'misc.title':        'Interests',
     'misc.tt.title':     'Table Tennis',
     'misc.tt.desc':      'Played for over 10 years in a club.',
     'misc.travel.title': 'Travel',
     'misc.travel.desc':  'Visited 17 countries so far — with many more to come.',
 
     // Contact
-    'contact.title':               '✉️ Contact',
+    'contact.title':               'Contact',
     'contact.name.label':          'Name',
     'contact.name.placeholder':    'Your name',
     'contact.email.label':         'Email',
@@ -387,6 +382,7 @@ const translations = {
     // Footer & aria
     'footer.backtotop':    'Back to top',
     'footer.privacy':      'Privacy',
+    'a11y.skip':           'Skip to content',
     'projects.github.label': 'View on GitHub',
     'aria.socials':     'Social links',
     'aria.socials.footer': 'Social links — footer',

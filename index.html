@@ -3,35 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <!-- Cookie consent GDPR + GA — deferred: runs after the end-of-body scripts (i18n.js, scroll.js) -->
-  <script src="cookie-banner.js?v=7" defer></script>
+  <script src="cookie-banner.js?v=8" defer></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alexis Colin — Data Engineer</title>
+  <title>Alexis Colin — Data &amp; AI Engineer</title>
 
   <!-- SEO -->
-  <meta name="description" content="Alexis Colin — Data Engineer à Montréal. Polyvalent sur toute la chaîne de données : ingestion, transformation, visualisation et valorisation." />
+  <meta name="description" content="Alexis Colin — Data & AI Engineer à Montréal. De leur source jusqu'aux agents IA : des données fiables, gouvernées, dignes de confiance." />
   <meta name="author" content="Alexis Colin" />
-  <meta name="keywords" content="Data Engineer, Montréal, Python, AWS, Snowflake, ETL, Grafana, Analytics, Data" />
+  <meta name="keywords" content="Data Engineer, Montréal, Python, AWS, ETL, Grafana, Analytics, Data, IA" />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#f0e6dc" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#272018" media="(prefers-color-scheme: dark)" />
-  <link rel="canonical" href="https://alexiscolin.fr" />
+  <link rel="canonical" href="https://alexiscolin.fr/" />
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://alexiscolin.fr" />
-  <meta property="og:title"       content="Alexis Colin — Data Engineer" />
-  <meta property="og:description" content="Polyvalent sur toute la chaîne de données : ingestion, transformation, visualisation et valorisation." />
+  <meta property="og:url"         content="https://alexiscolin.fr/" />
+  <meta property="og:title"       content="Alexis Colin — Data & AI Engineer" />
+  <meta property="og:description" content="De leur source jusqu'aux agents IA : des données fiables, gouvernées, dignes de confiance." />
   <meta property="og:image"       content="https://alexiscolin.fr/assets/photo.jpg" />
   <meta property="og:image:width"  content="800" />
   <meta property="og:image:height" content="800" />
+  <meta property="og:image:alt"    content="Alexis Colin" />
   <meta property="og:locale"      content="fr_CA" />
   <meta property="og:locale:alternate" content="en_CA" />
 
   <!-- Twitter Card — "summary" (square thumb): photo.jpg is 800x800, large_image expects 2:1 landscape -->
   <meta name="twitter:card"        content="summary" />
-  <meta name="twitter:title"       content="Alexis Colin — Data Engineer" />
-  <meta name="twitter:description" content="Data Engineer à Montréal. Polyvalent sur toute la chaîne de données : ingestion, transformation, visualisation et valorisation." />
+  <meta name="twitter:title"       content="Alexis Colin — Data & AI Engineer" />
+  <meta name="twitter:description" content="Data & AI Engineer à Montréal. De leur source jusqu'aux agents IA : des données fiables, gouvernées, dignes de confiance." />
   <meta name="twitter:image"       content="https://alexiscolin.fr/assets/photo.jpg" />
+  <meta name="twitter:image:alt"   content="Alexis Colin" />
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -39,9 +41,9 @@
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Alexis Colin",
-    "url": "https://alexiscolin.fr",
+    "url": "https://alexiscolin.fr/",
     "image": "https://alexiscolin.fr/assets/photo.jpg",
-    "jobTitle": "Data & Analytics Engineer",
+    "jobTitle": "Data & AI Engineer",
     "worksFor": { "@type": "Organization", "name": "Laps" },
     "address": { "@type": "PostalAddress", "addressLocality": "Montréal", "addressRegion": "QC", "addressCountry": "CA" },
     "knowsLanguage": ["fr", "en"],
@@ -59,7 +61,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/web-app-manifest-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="stylesheet" href="style.css?v=29" />
+  <link rel="stylesheet" href="style.css?v=30" />
   <script>
     (function(){
       document.documentElement.classList.add('js');
@@ -71,6 +73,8 @@
   </script>
 </head>
 <body>
+
+  <a href="#main" class="skip-link" data-i18n="a11y.skip">Aller au contenu</a>
 
   <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
 
@@ -173,12 +177,12 @@
   <!-- ═══════════ NAV STICKY ═══════════ -->
   <nav class="site-nav" id="siteNav" aria-label="Navigation">
     <div class="nav-links">
-      <a href="#about"      data-i18n="nav.about">👤 À propos</a>
-      <a href="#experience" data-i18n="nav.exp">💼 Expérience</a>
-      <a href="#skills"     data-i18n="nav.skills">⚡ Compétences</a>
-      <a href="#education"  data-i18n="nav.edu">🎓 Formation</a>
-      <a href="#projects"   data-i18n="nav.projects">🚀 Projets</a>
-      <a href="#contact"   data-i18n="nav.contact">✉️ Contact</a>
+      <a href="#about"><span aria-hidden="true">👤</span> <span data-i18n="nav.about">À propos</span></a>
+      <a href="#experience"><span aria-hidden="true">💼</span> <span data-i18n="nav.exp">Expérience</span></a>
+      <a href="#skills"><span aria-hidden="true">⚡</span> <span data-i18n="nav.skills">Compétences</span></a>
+      <a href="#education"><span aria-hidden="true">🎓</span> <span data-i18n="nav.edu">Formation</span></a>
+      <a href="#projects"><span aria-hidden="true">🚀</span> <span data-i18n="nav.projects">Projets</span></a>
+      <a href="#contact"><span aria-hidden="true">✉️</span> <span data-i18n="nav.contact">Contact</span></a>
     </div>
     <!-- Language toggle & theme toggle -->
     <div class="lang-toggle-wrap">
@@ -194,12 +198,12 @@
     </div>
   </nav>
 
-  <main>
+  <main id="main" tabindex="-1">
 
 
     <!-- ═══════════ ABOUT ═══════════ -->
     <section class="section reveal" id="about">
-      <h2 class="section-title" data-i18n="about.title">👤 À propos</h2>
+      <h2 class="section-title"><span aria-hidden="true">👤</span> <span data-i18n="about.title">À propos</span></h2>
       <div class="about-stats">
         <div class="about-stat" data-stat="exp">
           <span class="about-stat__num" data-count="5" data-suffix="+">0</span>
@@ -228,7 +232,7 @@
 
     <!-- ═══════════ EXPERIENCE ═══════════ -->
     <section class="section reveal" id="experience">
-      <h2 class="section-title" data-i18n="exp.title">💼 Expérience</h2>
+      <h2 class="section-title"><span aria-hidden="true">💼</span> <span data-i18n="exp.title">Expérience</span></h2>
       <div class="timeline">
 
         <!-- ── Laps Group ── -->
@@ -407,7 +411,7 @@
 
     <!-- ═══════════ SKILLS ═══════════ -->
     <section class="section reveal" id="skills">
-      <h2 class="section-title" data-i18n="skills.title">⚡ Compétences</h2>
+      <h2 class="section-title"><span aria-hidden="true">⚡</span> <span data-i18n="skills.title">Compétences</span></h2>
       <div class="skills-legend">
         <span class="legend-item" data-level="3"><i></i><span data-i18n="skills.level.expert">Expertise</span></span>
         <span class="legend-item" data-level="2"><i></i><span data-i18n="skills.level.mid">Maîtrise</span></span>
@@ -438,7 +442,7 @@
 
     <!-- ═══════════ EDUCATION ═══════════ -->
     <section class="section reveal" id="education">
-      <h2 class="section-title" data-i18n="edu.title">🎓 Formation</h2>
+      <h2 class="section-title"><span aria-hidden="true">🎓</span> <span data-i18n="edu.title">Formation</span></h2>
       <div class="timeline">
 
         <div class="timeline-item">
@@ -496,7 +500,7 @@
 
     <!-- ═══════════ PROJECTS ═══════════ -->
     <section class="section reveal" id="projects">
-      <h2 class="section-title" data-i18n="projects.title">🚀 Projets</h2>
+      <h2 class="section-title"><span aria-hidden="true">🚀</span> <span data-i18n="projects.title">Projets</span></h2>
       <div class="projects-grid">
 
         <!-- Built for Laps — proprietary code: GitHub overlay is shown but disabled (lock icon) -->
@@ -609,17 +613,17 @@
 
     <!-- ═══════════ MISC ═══════════ -->
     <section class="section reveal" id="misc">
-      <h2 class="section-title" data-i18n="misc.title">🎯 Divers</h2>
+      <h2 class="section-title"><span aria-hidden="true">🎯</span> <span data-i18n="misc.title">Divers</span></h2>
       <div class="misc-grid">
         <div class="misc-card">
-          <span class="misc-emoji">🏓</span>
+          <span class="misc-emoji" aria-hidden="true">🏓</span>
           <div>
             <strong data-i18n="misc.tt.title">Tennis de Table</strong>
             <p data-i18n="misc.tt.desc">Activité pratiquée pendant plus de 10 ans en club.</p>
           </div>
         </div>
         <div class="misc-card">
-          <span class="misc-emoji">✈️</span>
+          <span class="misc-emoji" aria-hidden="true">✈️</span>
           <div>
             <strong data-i18n="misc.travel.title">Voyages</strong>
             <p data-i18n="misc.travel.desc">Déjà 17 pays explorés, et bien d'autres à venir.</p>
@@ -631,7 +635,7 @@
 
     <!-- ═══════════ CONTACT ═══════════ -->
     <section class="section reveal" id="contact">
-      <h2 class="section-title" data-i18n="contact.title">✉️ Contact</h2>
+      <h2 class="section-title"><span aria-hidden="true">✉️</span> <span data-i18n="contact.title">Contact</span></h2>
       <form class="contact-form" id="contactForm" action="https://formspree.io/f/xkopnznd" method="POST" novalidate>
         <div class="contact-form__row">
           <div class="contact-form__field">
@@ -730,7 +734,7 @@
   <!-- Intentional load order: i18n.js must come before scroll.js
        (scroll.js depends on `translations` and `currentLang` defined in i18n.js)
        Do not add async/defer to these two scripts. -->
-  <script src="i18n.js?v=17"></script>
+  <script src="i18n.js?v=18"></script>
   <script src="scroll.js?v=25"></script>
 </body>
 </html>
