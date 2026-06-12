@@ -1948,6 +1948,12 @@ footer a:not(.back-to-top):hover {
   padding: 0;
 }
 
+/* Mobile: bump to 16px so iOS Safari doesn't auto-zoom when the input gains
+   focus (it zooms any focused field under 16px, which shifts the layout). */
+@media (max-width: 540px) {
+  .terminal { font-size: 16px; }
+}
+
 /* ═══════════════════════════════════════════
    STICKY NAV
 ═══════════════════════════════════════════ */
