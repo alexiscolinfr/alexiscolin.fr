@@ -157,6 +157,8 @@
   --accent-text: #9d4a28; /* accent-colored text — ≥ 4.5:1 on bg/card */
   --accent-btn:  #b85c38; /* button background with white text — ≥ 4.5:1 */
   --accent-soft: rgba(184,92,56,.12);
+  /* Colourise filter applied to monochrome skill icons (light theme) */
+  --icon-filter: invert(26%) sepia(9%) saturate(600%) hue-rotate(340deg) brightness(88%) contrast(92%);
   /* Contract badge text colors — lightened in dark mode for contrast */
   --badge-green:  #3d7a52;
   --badge-blue:   #3260a0;
@@ -187,6 +189,7 @@
   --accent-btn:  #a34e2e; /* button background with white text — ≥ 4.5:1 */
   --accent-dark: #8f4426;
   --accent-soft: rgba(201,104,64,.15);
+  --icon-filter: invert(85%) sepia(10%) saturate(300%) hue-rotate(340deg) brightness(100%) contrast(90%);
   --badge-green:  #82c79a;
   --badge-blue:   #8fb6e8;
   --badge-ochre:  #d4a35e;
@@ -215,6 +218,7 @@
     --accent-btn:  #a34e2e; /* button background with white text — ≥ 4.5:1 */
     --accent-dark: #8f4426;
     --accent-soft: rgba(201,104,64,.15);
+    --icon-filter: invert(85%) sepia(10%) saturate(300%) hue-rotate(340deg) brightness(100%) contrast(90%);
     --badge-green:  #82c79a;
     --badge-blue:   #8fb6e8;
     --badge-ochre:  #d4a35e;
@@ -685,8 +689,8 @@ header h1 {
 %3C/g%3E%3C/svg%3E");
 }
 
-/* briefcase — companies */
-.about-stat[data-stat="companies"]::before {
+/* briefcase — industry sectors */
+.about-stat[data-stat="sectors"]::before {
   background-image:
     url("data:image/svg+xml,\
 %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 90 90' fill='none'\
@@ -815,7 +819,8 @@ header h1 {
   color: var(--text);
   line-height: 1.8;
   margin-bottom: 16px;
-  text-align: justify;
+  /* left-aligned: justified monospace creates large rivers between words */
+  text-align: left;
 }
 
 /* ═══════════════════════════════════════════
@@ -1422,16 +1427,9 @@ a.company:hover {
   background: linear-gradient(to right, rgba(53,44,34,0) 0%, rgba(53,44,34,0.55) 45%);
 }
 
-[data-theme="dark"] .stack-item img {
-  filter: invert(85%) sepia(10%) saturate(300%) hue-rotate(340deg) brightness(100%) contrast(90%);
-}
-
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .project-overlay {
     background: linear-gradient(to right, rgba(53,44,34,0) 0%, rgba(53,44,34,0.55) 45%);
-  }
-  :root:not([data-theme="light"]) .stack-item img {
-    filter: invert(85%) sepia(10%) saturate(300%) hue-rotate(340deg) brightness(100%) contrast(90%);
   }
 }
 
@@ -2101,7 +2099,10 @@ footer a:not(.back-to-top):hover {
 
 .skill-card__items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(55px, 1fr));
+  /* Cap at 4 chips per row: the column min is the width of a 1/4 track
+     (minus the 3 × 8px gaps), so a 5th never fits — but it still falls back
+     to 55px on narrow screens and stretches to fill rows with fewer items. */
+  grid-template-columns: repeat(auto-fit, minmax(max(55px, (100% - 24px) / 4), 1fr));
   gap: 8px;
 }
 
@@ -2168,27 +2169,53 @@ footer a:not(.back-to-top):hover {
   opacity: 0.2;
 }
 
-/* Level indicator — inset top stripe */
+/* ── Level tiers ─────────────────────────────────────────────────────────────
+   A deliberate three-step ramp so the levels read instantly:
+     Expert     → filled accent card, thick solid stripe, accent border + glow
+     Proficient → light fill, medium stripe, faint accent border
+     Familiar   → no fill, faint thin stripe, desaturated + faded content
+   Stripe opacities/thicknesses mirror the legend swatches (100/60/20%). */
 .stack-item[data-level="3"] {
-  box-shadow: inset 0 3px 0 var(--accent);
-  background: color-mix(in srgb, var(--accent) 9%, var(--bg));
-  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent) 15%, var(--bg));
+  border-width: 2px;
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  box-shadow:
+    inset 0 4px 0 var(--accent),
+    0 3px 12px -5px color-mix(in srgb, var(--accent) 55%, transparent);
 }
 .stack-item[data-level="2"] {
-  box-shadow: inset 0 3px 0 color-mix(in srgb, var(--accent) 65%, transparent);
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+  border-color: color-mix(in srgb, var(--accent) 22%, var(--border));
+  box-shadow: inset 0 3px 0 color-mix(in srgb, var(--accent) 60%, transparent);
 }
+/* Level 1: dim only the content (icon + label) so the colored stripe stays
+   as vivid as the legend swatch — opacity/filter on the element itself would
+   also wash out the box-shadow stripe. */
 .stack-item[data-level="1"] {
-  box-shadow: inset 0 3px 0 color-mix(in srgb, var(--accent) 18%, transparent);
-  filter: grayscale(75%);
-  opacity: 0.55;
+  box-shadow: inset 0 2px 0 color-mix(in srgb, var(--accent) 20%, transparent);
 }
-.stack-item[data-level="1"]:hover { filter: none; opacity: 1; }
-.stack-item[data-level="1"]:hover > img { filter: blur(2px) !important; opacity: 0.2 !important; }
+.stack-item[data-level="1"] > img,
+.stack-item[data-level="1"] > svg,
+.stack-item[data-level="1"] > span:not(.skill-dots) {
+  opacity: 0.42;
+}
+/* Desaturate Familiar icons by appending grayscale() to the theme-aware
+   --icon-filter (a bare grayscale() would drop the dark-mode invert and leave
+   the icons black). Single rule → hover blur below always wins on specificity. */
+.stack-item[data-level="1"] > img {
+  filter: var(--icon-filter) grayscale(100%);
+}
+.stack-item[data-level="1"]:hover > img,
+.stack-item[data-level="1"]:hover > svg,
+.stack-item[data-level="1"]:hover > span:not(.skill-dots) {
+  filter: blur(2px);
+  opacity: 0.2;
+}
 
 .stack-item img {
   width: 22px;
   height: 22px;
-  filter: invert(26%) sepia(9%) saturate(600%) hue-rotate(340deg) brightness(88%) contrast(92%);
+  filter: var(--icon-filter);
   transition: filter .2s, opacity .2s;
 }
 
@@ -2266,9 +2293,9 @@ footer a:not(.back-to-top):hover {
   font-style: normal;
   flex-shrink: 0;
 }
-.legend-item[data-level="3"] i { background: var(--accent); }
-.legend-item[data-level="2"] i { background: color-mix(in srgb, var(--accent) 65%, transparent); }
-.legend-item[data-level="1"] i { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.legend-item[data-level="3"] i { background: var(--accent); height: 4px; }
+.legend-item[data-level="2"] i { background: color-mix(in srgb, var(--accent) 60%, transparent); height: 3px; }
+.legend-item[data-level="1"] i { background: color-mix(in srgb, var(--accent) 20%, transparent); height: 2px; }
 
 .stack-item svg {
   color: var(--tag-text);

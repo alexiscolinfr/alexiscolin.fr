@@ -20,17 +20,20 @@ function currentJobDuration(lang) {
 }
 
 // ─── Language state ───────────────────────────────────────────────────────────
+// Priority: explicit localStorage choice → browser language → 'fr'.
 let currentLang = (function(){
   try {
     var s = localStorage.getItem('lang');
-    return s === 'fr' || s === 'en' ? s : null;
-  } catch(e) { return null; }
-})() || 'fr';
+    if (s === 'fr' || s === 'en') return s;
+  } catch(e) {}
+  var nav = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+  return nav.toLowerCase().indexOf('en') === 0 ? 'en' : 'fr';
+})();
 
 // ─── Translations ─────────────────────────────────────────────────────────────
 const translations = {
   fr: {
-    'hero.role':           'Développeur de données',
+    'hero.role':           'Développeur Data & IA',
     'hero.location':       'Montréal, QC',
     'hero.location.short': 'Montréal',
     'links.cv':           'Télécharger le CV',
@@ -49,13 +52,12 @@ const translations = {
     // About
     'about.title':    '👤 À propos',
     'stat.exp':       'ans d\'expérience',
-    'stat.companies': 'secteurs d\'activité',
+    'stat.sectors':   'secteurs d\'activité',
     'stat.pipelines': 'pipelines déployés',
     'about.readmore': 'Lire la suite',
     'about.readless': 'Réduire',
-    'about.p1': 'Développeur de données passionné et polyvalent, je conçois et développe des systèmes décisionnels qui aident les entreprises à prendre des décisions stratégiques éclairées. Chez Laps, un réseau de plateformes e-commerce, je contribue activement à bâtir une infrastructure complète pour collecter, transformer et visualiser les données.',
-    'about.p2': 'Mon parcours m\'a permis de développer une expertise complète sur l\'ensemble de la chaîne de traitement des données, dans des contextes et secteurs variés. J\'ai conçu et automatisé des pipelines de données, modélisé des data warehouses adaptés aux besoins métiers, et réalisé des rapports pertinents avec différents outils de visualisation. Plus récemment, j\'ai étendu cette chaîne à l\'IA générative, en connectant les données de l\'entreprise aux assistants IA de façon gouvernée et sécurisée.',
-    'about.p3': 'J\'apprécie particulièrement de collaborer avec des équipes multidisciplinaires pour transformer les données brutes en insights opérationnels, facilitant ainsi une prise de décision efficace et l\'amélioration des performances organisationnelles.',
+    'about.p1': 'Développeur Data & IA, j\'ai conçu et mis en place l\'infrastructure de données complète d\'un réseau e-commerce — de l\'ingestion des données jusqu\'à leur exposition aux assistants IA via un serveur MCP gouverné et sécurisé. Chez Laps, je construis des systèmes décisionnels qui aident l\'entreprise à prendre des décisions stratégiques éclairées.',
+    'about.p2': 'Mon parcours couvre l\'ensemble de la chaîne de traitement des données, dans des secteurs variés : pipelines automatisés, data warehouses modélisés selon les besoins métiers, et rapports stratégiques et opérationnels construits avec différents outils de visualisation — en collaboration étroite avec les équipes métiers pour transformer les données brutes en leviers de décision.',
 
     // Experience
     'exp.title':        '💼 Expérience',
@@ -66,7 +68,7 @@ const translations = {
     'exp.tasks.show': 'Voir les missions',
     'exp.tasks.hide': 'Masquer',
 
-    'exp.laps.role':    'Développeur Data & Analytique',
+    'exp.laps.role':    'Développeur Data & Analytics',
     'exp.laps.start':   'Févr. 2024',
     'exp.laps.end':     "Aujourd'hui",
     'exp.laps.total':   `${currentJobDuration('fr')} · Montréal, QC 🇨🇦`,
@@ -217,7 +219,7 @@ const translations = {
   },
 
   en: {
-    'hero.role':           'Data Engineer',
+    'hero.role':           'Data & AI Engineer',
     'hero.location':       'Montreal, QC',
     'hero.location.short': 'Montreal',
     'links.cv':           'Download CV',
@@ -236,13 +238,12 @@ const translations = {
     // About
     'about.title':    '👤 About',
     'stat.exp':       'years of experience',
-    'stat.companies': 'industry sectors',
+    'stat.sectors':   'industry sectors',
     'stat.pipelines': 'deployed pipelines',
     'about.readmore': 'Read more',
     'about.readless': 'Show less',
-    'about.p1': 'Passionate and versatile Data & Analytics Engineer, I design and build decision-support systems that help businesses make informed strategic decisions. At Laps, a network of e-commerce platforms, I actively contribute to building a complete data infrastructure for collecting, transforming, and visualizing data.',
-    'about.p2': 'My career path has allowed me to develop comprehensive expertise across the entire data processing chain, in various industries and contexts. I have designed and automated data pipelines, modeled data warehouses tailored to business needs, and created insightful reports using a range of visualization tools. More recently, I have extended that chain to generative AI, connecting company data to AI assistants in a governed, secure way.',
-    'about.p3': 'I particularly enjoy working with multidisciplinary teams to turn raw data into actionable insights, supporting effective decision-making and driving organizational performance improvements.',
+    'about.p1': 'As a Data & AI Engineer, I designed and built the complete data infrastructure of an e-commerce network — from data ingestion all the way to exposing it to AI assistants through a governed, secured MCP server. At Laps, I build decision-support systems that help the business make informed strategic decisions.',
+    'about.p2': 'My career spans the entire data processing chain, across a range of industries: automated pipelines, data warehouses modeled around business needs, and strategic and operational reporting built with various visualization tools — working closely with business teams to turn raw data into decision-making levers.',
 
     // Experience
     'exp.title':        '💼 Experience',

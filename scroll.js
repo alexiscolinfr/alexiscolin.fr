@@ -13,6 +13,8 @@ if (scrollProgressBar) {
 const customIcons = {
   sql:   'M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4zm0 2c3.87 0 6 1.5 6 2s-2.13 2-6 2-6-1.5-6-2 2.13-2 6-2zm0 16c-3.87 0-6-1.5-6-2v-2.23C7.61 17.63 9.72 18 12 18s4.39-.37 6-1.23V19c0 .5-2.13 2-6 2zm0-4c-3.87 0-6-1.5-6-2v-2.23C7.61 13.63 9.72 14 12 14s4.39-.37 6-1.23V15c0 .5-2.13 2-6 2zm0-4c-3.87 0-6-1.5-6-2V9.77C7.61 10.63 9.72 11 12 11s4.39-.37 6-1.23V11c0 .5-2.13 2-6 2z',
   agile: 'M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z',
+  // "sparkles" glyph (Material auto_awesome) for the GenAI skill
+  genai: 'M19 9l1.25-2.75L23 5l-2.75-1.25L19 1l-1.25 2.75L15 5l2.75 1.25L19 9zm-7.5.5L9 4 6.5 9.5 1 12l5.5 2.5L9 20l2.5-5.5L17 12l-5.5-2.5zM19 15l-1.25 2.75L15 19l2.75 1.25L19 23l1.25-2.75L23 19l-2.75-1.25L19 15z',
 };
 
 function makeCustomSvg(pathData) {
@@ -29,6 +31,7 @@ function makeCustomSvg(pathData) {
 // ─── Skills catalogue ─────────────────────────────────────────────────────────
 const skillsData = [
   // Development
+  { id: 'genai',      name: 'GenAI',      level: 3, category: 'dev',   icon: null },
   { id: 'python',     name: 'Python',     level: 3, category: 'dev',   icon: 'python' },
   { id: 'git',        name: 'Git',        level: 2, category: 'dev',   icon: 'git' },
   { id: 'pentaho',    name: 'Pentaho',    level: 2, category: 'dev',   icon: 'hitachi' },
@@ -135,6 +138,7 @@ const roleSkills = {
     start: CURRENT_JOB_START,
     end: null,                  // ongoing
     skills: [
+      { id: 'genai',          key: true  },
       { id: 'python',         key: true  },
       { id: 'aws',            key: true  },
       { id: 'grafana',        key: true  },

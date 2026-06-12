@@ -59,7 +59,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="assets/web-app-manifest-192x192.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="style.css?v=29" />
   <script>
     (function(){
       document.documentElement.classList.add('js');
@@ -124,7 +124,7 @@
         <h1>Alexis Colin</h1>
       </div>
 <p class="hero-subtitle" data-anim style="--i:2">
-        <span class="hero-role" data-i18n="hero.role">Développeur de données</span>
+        <span class="hero-role" data-i18n="hero.role">Développeur Data &amp; IA</span>
         <span class="hero-loc">
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span data-i18n="hero.location">Montréal, QC</span> 🇨🇦
@@ -205,9 +205,9 @@
           <span class="about-stat__num" data-count="5" data-suffix="+">0</span>
           <span class="about-stat__label" data-i18n="stat.exp">ans d'expérience</span>
         </div>
-        <div class="about-stat" data-stat="companies">
+        <div class="about-stat" data-stat="sectors">
           <span class="about-stat__num" data-count="4" data-suffix="">0</span>
-          <span class="about-stat__label" data-i18n="stat.companies">secteurs d'activité</span>
+          <span class="about-stat__label" data-i18n="stat.sectors">secteurs d'activité</span>
         </div>
         <div class="about-stat" data-stat="pipelines">
           <span class="about-stat__num" data-count="500" data-suffix="+">0</span>
@@ -216,9 +216,8 @@
       </div>
 
       <div class="about-body" id="aboutBody">
-        <p class="about-text" data-i18n="about.p1">Développeur de données passionné et polyvalent, je conçois et développe des systèmes décisionnels qui aident les entreprises à prendre des décisions stratégiques éclairées. Chez Laps, un réseau de plateformes e-commerce, je contribue activement à bâtir une infrastructure complète pour collecter, transformer et visualiser les données.</p>
-        <p class="about-text" data-i18n="about.p2">Mon parcours m'a permis de développer une expertise complète sur l'ensemble de la chaîne de traitement des données, dans des contextes et secteurs variés. J'ai conçu et automatisé des pipelines de données, modélisé des data warehouses adaptés aux besoins métiers, et réalisé des rapports pertinents avec différents outils de visualisation. Plus récemment, j'ai étendu cette chaîne à l'IA générative, en connectant les données de l'entreprise aux assistants IA de façon gouvernée et sécurisée.</p>
-        <p class="about-text" data-i18n="about.p3">J'apprécie particulièrement de collaborer avec des équipes multidisciplinaires pour transformer les données brutes en insights opérationnels, facilitant ainsi une prise de décision efficace et l'amélioration des performances organisationnelles.</p>
+        <p class="about-text" data-i18n="about.p1">Développeur Data &amp; IA, j'ai conçu et mis en place l'infrastructure de données complète d'un réseau e-commerce — de l'ingestion des données jusqu'à leur exposition aux assistants IA via un serveur MCP gouverné et sécurisé. Chez Laps, je construis des systèmes décisionnels qui aident l'entreprise à prendre des décisions stratégiques éclairées.</p>
+        <p class="about-text" data-i18n="about.p2">Mon parcours couvre l'ensemble de la chaîne de traitement des données, dans des secteurs variés : pipelines automatisés, data warehouses modélisés selon les besoins métiers, et rapports stratégiques et opérationnels construits avec différents outils de visualisation — en collaboration étroite avec les équipes métiers pour transformer les données brutes en leviers de décision.</p>
         <div class="about-fade"></div>
       </div>
       <button type="button" class="about-toggle" id="aboutToggle" aria-expanded="false" aria-controls="aboutBody">
@@ -254,7 +253,7 @@
             <div class="timeline-subitem" data-role="laps">
               <div class="timeline-content">
                 <div class="timeline-header">
-                  <h3 data-i18n="exp.laps.role">Développeur Data &amp; Analytique</h3>
+                  <h3 data-i18n="exp.laps.role">Développeur Data &amp; Analytics</h3>
                   <span class="contract-badge contract-badge--permanent" data-i18n="contract.permanent">CDI</span>
                 </div>
                 <div class="tags"></div>
@@ -668,7 +667,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-left">
-          <p class="footer-tagline"><span data-i18n="hero.role">Développeur de données</span> · <span data-i18n="hero.location.short">Montréal</span></p>
+          <p class="footer-tagline"><span data-i18n="hero.role">Développeur Data &amp; IA</span> · <span data-i18n="hero.location.short">Montréal</span></p>
         </div>
         <div class="footer-right">
           <nav class="footer-socials" aria-label="Réseaux sociaux — pied de page" data-i18n-aria="aria.socials.footer">
@@ -731,7 +730,7 @@
   <!-- Intentional load order: i18n.js must come before scroll.js
        (scroll.js depends on `translations` and `currentLang` defined in i18n.js)
        Do not add async/defer to these two scripts. -->
-  <script src="i18n.js?v=14"></script>
-  <script src="scroll.js?v=24"></script>
+  <script src="i18n.js?v=17"></script>
+  <script src="scroll.js?v=25"></script>
 </body>
 </html>
