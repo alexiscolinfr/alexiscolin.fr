@@ -664,7 +664,9 @@ header h1 {
   overflow: hidden;
 }
 
-/* ── Diagonal pattern — paused by default, animated and visible on hover ── */
+/* ── Diagonal pattern — only its opacity is toggled on hover. The scroll
+   animation runs continuously (it's invisible at opacity 0), so the pattern
+   keeps moving while it fades out on mouse-leave instead of freezing mid-fade. */
 .about-stat::before {
   content: '';
   position: absolute;
@@ -676,13 +678,11 @@ header h1 {
   opacity: 0;
   transition: opacity .5s ease;
   animation: stat-scroll 4s linear infinite;
-  animation-play-state: paused;
   pointer-events: none;
 }
 
 .about-stat:hover::before {
   opacity: 1;
-  animation-play-state: running;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2063,9 +2063,20 @@ footer a:not(.back-to-top):hover {
   }
 }
 
-/* Lang-switch fade — text only */
-[data-i18n] {
-  transition: opacity .08s ease;
+/* Lang-switch — a short, subtle opacity fade of the whole page content.
+   #pageWrap wraps the hero, main and footer; the fixed nav/toggles, terminal,
+   cookie banner and scroll bar sit OUTSIDE it, so they don't flicker. */
+#pageWrap {
+  transition: opacity .13s ease;
+}
+
+.lang-switching #pageWrap {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #pageWrap { transition: none; }
+  .lang-switching #pageWrap { opacity: 1; }
 }
 
 /* ═══════════════════════════════════════════

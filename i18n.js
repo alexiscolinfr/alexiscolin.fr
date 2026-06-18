@@ -68,7 +68,7 @@ const translations = {
     'exp.tasks.show': 'Voir les missions',
     'exp.tasks.hide': 'Masquer',
 
-    'exp.laps.role':    'Développeur Data & Analytics',
+    'exp.laps.role':    'Développeur Data & IA',
     'exp.laps.start':   'Févr. 2024',
     'exp.laps.end':     "Aujourd'hui",
     'exp.laps.total':   `${currentJobDuration('fr')} · Montréal, QC 🇨🇦`,
@@ -252,7 +252,7 @@ const translations = {
     'exp.tasks.show': 'Show tasks',
     'exp.tasks.hide': 'Hide',
 
-    'exp.laps.role':    'Data & Analytics Engineer',
+    'exp.laps.role':    'Data & AI Engineer',
     'exp.laps.start':   'Feb. 2024',
     'exp.laps.end':     'Present',
     'exp.laps.total':   `${currentJobDuration('en')} · Montreal, QC 🇨🇦`,
@@ -469,17 +469,35 @@ function applyLang(lang) {
 }
 
 // ─── Toggle handler ───────────────────────────────────────────────────────────
+let langSwitching = false;
+const FADE_MS = 130; // keep in sync with #pageWrap transition in style.css
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 document.getElementById('langToggle').addEventListener('click', () => {
   const next = currentLang === 'fr' ? 'en' : 'fr';
-  const els  = document.querySelectorAll('[data-i18n]');
 
-  els.forEach(el => { el.style.opacity = '0'; });
+  // Reduced motion: swap instantly, no animation.
+  if (reduceMotion) {
+    currentLang = next;
+    applyLang(next);
+    return;
+  }
+
+  if (langSwitching) return; // ignore clicks mid-transition
+  langSwitching = true;
+
+  // Fade the content out (CSS handles the opacity transition on #pageWrap).
+  document.body.classList.add('lang-switching');
 
   setTimeout(() => {
     currentLang = next;
     applyLang(next);
-    els.forEach(el => { el.style.opacity = ''; });
-  }, 70);
+    // Reveal on the next frame so the new content dissolves back in smoothly.
+    requestAnimationFrame(() => {
+      document.body.classList.remove('lang-switching');
+      langSwitching = false;
+    });
+  }, FADE_MS);
 });
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
